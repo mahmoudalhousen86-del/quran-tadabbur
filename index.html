@@ -2,81 +2,1361 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>تدبّر القرآن</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>أكاديمية أواسيس للعطور | Oasis Fragrance Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
+:root {
+  --ink: #0f2a2a;
+  --ink-soft: #3a5554;
+  --sand: #e8d5b5;
+  --sand-deep: #c9a66b;
+  --gold: #d4a017;
+  --gold-soft: #f0d78c;
+  --teal: #0d5c5a;
+  --teal-deep: #083f3e;
+  --teal-glow: #1a8a86;
+  --mint: #b8e0d8;
+  --cream: #f7f1e6;
+  --white: #fffef9;
+  --rose: #a84d5a;
+  --success: #2d7a4f;
+  --danger: #9b2c2c;
+  --radius: 18px;
+  --shadow: 0 18px 50px rgba(8, 63, 62, 0.18);
+  --font-display: "Amiri", "Times New Roman", serif;
+  --font-body: "Tajawal", "Segoe UI", sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont;
-  background: #f2f4f7;
-  margin: 0;
-  padding: 15px;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse 80% 50% at 10% -10%, rgba(26, 138, 134, 0.22), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(212, 160, 23, 0.18), transparent 50%),
+    linear-gradient(165deg, #f4ebe0 0%, #e7f2ef 42%, #efe6d4 100%);
+  min-height: 100vh;
+  line-height: 1.7;
+  overflow-x: hidden;
 }
-header {
-  background: #1e40af;
-  color: white;
-  padding: 15px;
+
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+a { color: inherit; text-decoration: none; }
+
+.app-shell { max-width: 1120px; margin: 0 auto; padding: 0 1.25rem 4rem; }
+
+/* —— NAV —— */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: blur(14px);
+  background: rgba(247, 241, 230, 0.82);
+  border-bottom: 1px solid rgba(13, 92, 90, 0.12);
+  margin: 0 -1.25rem;
+  padding: 0.75rem 1.25rem;
+}
+
+.topbar-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, var(--gold-soft), transparent 45%),
+    linear-gradient(145deg, var(--teal-glow), var(--teal-deep));
+  box-shadow: 0 6px 16px rgba(13, 92, 90, 0.35);
+  position: relative;
+}
+
+.brand-mark::after {
+  content: "";
+  position: absolute;
+  inset: 12px 10px 8px;
+  border-radius: 50% 50% 40% 40%;
+  background: rgba(255, 254, 249, 0.35);
+}
+
+.brand-text strong {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--teal-deep);
+}
+
+.brand-text span {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.nav-links button {
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  transition: background 0.25s, color 0.25s, transform 0.2s;
+}
+
+.nav-links button:hover,
+.nav-links button.active {
+  background: var(--teal);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+.progress-pill {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--teal-deep);
+  background: rgba(13, 92, 90, 0.1);
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+}
+
+/* —— HERO —— */
+.hero {
+  position: relative;
+  margin: 1.5rem 0 2.5rem;
+  min-height: min(88vh, 720px);
+  border-radius: 28px;
+  overflow: hidden;
+  display: grid;
+  align-items: end;
+  box-shadow: var(--shadow);
+  animation: fadeRise 0.9s ease both;
+}
+
+.hero-visual {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(8, 63, 62, 0.15) 0%, rgba(8, 63, 62, 0.72) 55%, rgba(8, 63, 62, 0.92) 100%),
+    radial-gradient(circle at 70% 30%, rgba(240, 215, 140, 0.35), transparent 40%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23083f3e'/%3E%3Cstop offset='1' stop-color='%230d5c5a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23g)' width='800' height='600'/%3E%3Cellipse cx='400' cy='480' rx='280' ry='40' fill='%230a4a48' opacity='.5'/%3E%3Cpath d='M180 420 Q250 280 320 420' fill='none' stroke='%23c9a66b' stroke-width='8'/%3E%3Cpath d='M480 430 Q560 250 640 430' fill='none' stroke='%23d4a017' stroke-width='10'/%3E%3Ccircle cx='320' cy='300' r='28' fill='%23f0d78c' opacity='.7'/%3E%3Ccircle cx='560' cy='260' r='36' fill='%23b8e0d8' opacity='.45'/%3E%3Ccircle cx='420' cy='200' r='18' fill='%23e8d5b5' opacity='.5'/%3E%3C/svg%3E") center/cover no-repeat;
+}
+
+.hero-mist {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 70%, rgba(184, 224, 216, 0.2), transparent 45%);
+  animation: mistDrift 8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: clamp(1.5rem, 5vw, 3.5rem);
+  color: var(--white);
+  max-width: 640px;
+}
+
+.hero-brand {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 8vw, 4.4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  animation: fadeRise 1s 0.15s ease both;
+}
+
+.hero-title {
+  font-size: clamp(1.15rem, 3vw, 1.55rem);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  color: var(--gold-soft);
+  animation: fadeRise 1s 0.28s ease both;
+}
+
+.hero-lead {
+  font-size: 1.05rem;
+  opacity: 0.92;
+  margin-bottom: 1.5rem;
+  max-width: 36ch;
+  animation: fadeRise 1s 0.4s ease both;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  animation: fadeRise 1s 0.52s ease both;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.85rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.98rem;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold), #b8860b);
+  color: var(--teal-deep);
+  box-shadow: 0 10px 28px rgba(212, 160, 23, 0.35);
+}
+
+.btn-ghost {
+  background: rgba(255, 254, 249, 0.12);
+  color: var(--white);
+  border: 1px solid rgba(255, 254, 249, 0.35);
+  backdrop-filter: blur(6px);
+}
+
+.btn-teal {
+  background: linear-gradient(135deg, var(--teal-glow), var(--teal-deep));
+  color: var(--white);
+  box-shadow: 0 10px 28px rgba(13, 92, 90, 0.3);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* —— SECTIONS —— */
+.panel { display: none; animation: fadeRise 0.45s ease both; }
+.panel.active { display: block; }
+
+.section-head {
+  margin-bottom: 1.5rem;
+}
+
+.section-head h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  color: var(--teal-deep);
+  line-height: 1.25;
+}
+
+.section-head p {
+  color: var(--ink-soft);
+  max-width: 52ch;
+  margin-top: 0.4rem;
+}
+
+/* —— LEARN —— */
+.lesson-nav {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.25rem;
+  scrollbar-width: thin;
+}
+
+.lesson-chip {
+  flex: 0 0 auto;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 254, 249, 0.7);
+  border: 1px solid rgba(13, 92, 90, 0.15);
+  color: var(--ink-soft);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.lesson-chip.active,
+.lesson-chip.done {
+  background: var(--teal);
+  color: var(--white);
+  border-color: transparent;
+}
+
+.lesson-chip.done:not(.active) {
+  background: var(--success);
+}
+
+.lesson-stage {
+  background:
+    linear-gradient(145deg, rgba(255, 254, 249, 0.92), rgba(232, 213, 181, 0.35)),
+    var(--white);
+  border: 1px solid rgba(13, 92, 90, 0.1);
+  border-radius: var(--radius);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  box-shadow: 0 12px 40px rgba(8, 63, 62, 0.08);
+}
+
+.lesson-stage h3 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--teal-deep);
+  margin-bottom: 0.5rem;
+}
+
+.lesson-intro {
+  color: var(--ink-soft);
+  margin-bottom: 1.25rem;
+}
+
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+
+.concept {
+  padding: 1.1rem 1rem;
+  border-radius: 14px;
+  background: rgba(13, 92, 90, 0.05);
+  border-right: 4px solid var(--teal);
+  transition: transform 0.25s, background 0.25s;
+}
+
+.concept:hover {
+  transform: translateY(-3px);
+  background: rgba(13, 92, 90, 0.09);
+}
+
+.concept h4 {
+  font-size: 1.05rem;
+  margin-bottom: 0.35rem;
+  color: var(--teal-deep);
+}
+
+.concept p { font-size: 0.92rem; color: var(--ink-soft); }
+
+.concept .tag {
+  display: inline-block;
+  margin-top: 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+}
+
+.pyramid {
+  display: grid;
+  gap: 0.65rem;
+  margin: 1.5rem 0;
+}
+
+.note-layer {
+  padding: 1rem 1.2rem;
   border-radius: 12px;
+  color: var(--white);
   text-align: center;
-  margin-bottom: 15px;
+  margin-inline: auto;
+  transition: transform 0.3s;
+  animation: fadeRise 0.6s ease both;
 }
-.card {
-  background: white;
-  padding: 15px;
+
+.note-layer:hover { transform: scale(1.02); }
+.note-layer.top { width: 55%; background: linear-gradient(90deg, #1a8a86, #2aa8a3); animation-delay: 0.05s; }
+.note-layer.heart { width: 75%; background: linear-gradient(90deg, #0d5c5a, #14706d); animation-delay: 0.15s; }
+.note-layer.base { width: 95%; background: linear-gradient(90deg, #083f3e, #0a4f4d); animation-delay: 0.25s; }
+.note-layer strong { display: block; font-size: 1.05rem; }
+.note-layer span { font-size: 0.85rem; opacity: 0.9; }
+
+.tip-box {
+  margin-top: 1.25rem;
+  padding: 1rem 1.15rem;
   border-radius: 12px;
-  margin-bottom: 15px;
+  background: linear-gradient(120deg, rgba(212, 160, 23, 0.15), rgba(240, 215, 140, 0.25));
+  border: 1px solid rgba(212, 160, 23, 0.35);
+  color: var(--ink);
+  font-size: 0.95rem;
 }
-.ayah {
-  font-size: 20px;
-  line-height: 1.9;
+
+.lesson-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
 }
-.meta {
-  font-size: 14px;
-  color: #555;
+
+/* —— CATALOG —— */
+.catalog-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
 }
-button {
-  width: 100%;
-  padding: 12px;
-  background: #2563eb;
-  color: white;
-  border: none;
+
+.filter-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 254, 249, 0.75);
+  border: 1px solid rgba(13, 92, 90, 0.14);
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.filter-btn.active {
+  background: var(--teal-deep);
+  color: var(--white);
+  border-color: transparent;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.category-tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  padding: 1.35rem 1.2rem 1.2rem;
+  min-height: 210px;
+  color: var(--white);
+  text-align: right;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 10px 30px rgba(8, 63, 62, 0.15);
+  cursor: pointer;
+}
+
+.category-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(8, 63, 62, 0.22);
+}
+
+.category-tile h3 {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  margin-bottom: 0.35rem;
+}
+
+.category-tile p {
+  font-size: 0.92rem;
+  opacity: 0.92;
+  margin-bottom: 0.85rem;
+}
+
+.category-tile .meta {
+  font-size: 0.8rem;
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+.category-tile::before {
+  content: "";
+  position: absolute;
+  inset: auto -20% -30% auto;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.brand-cloud {
+  margin-top: 2rem;
+  padding: 1.4rem;
+  border-radius: var(--radius);
+  background: rgba(255, 254, 249, 0.75);
+  border: 1px solid rgba(13, 92, 90, 0.1);
+}
+
+.brand-cloud h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--teal-deep);
+  margin-bottom: 0.75rem;
+}
+
+.brand-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.brand-tags span {
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(13, 92, 90, 0.08);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--teal-deep);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.brand-tags span:hover {
+  background: rgba(13, 92, 90, 0.16);
+  transform: translateY(-1px);
+}
+
+.detail-drawer {
+  display: none;
+  margin-top: 1.25rem;
+  padding: 1.35rem;
+  border-radius: var(--radius);
+  background: linear-gradient(145deg, var(--white), rgba(184, 224, 216, 0.25));
+  border: 1px solid rgba(13, 92, 90, 0.12);
+  animation: fadeRise 0.35s ease both;
+}
+
+.detail-drawer.open { display: block; }
+
+.detail-drawer h3 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--teal-deep);
+  margin-bottom: 0.5rem;
+}
+
+.example-list {
+  margin-top: 0.85rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.example-list li {
+  list-style: none;
+  padding: 0.55rem 0.75rem;
   border-radius: 10px;
-  font-size: 16px;
+  background: rgba(13, 92, 90, 0.06);
+  font-size: 0.9rem;
+}
+
+.abbrev-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.abbrev-table th,
+.abbrev-table td {
+  text-align: right;
+  padding: 0.55rem 0.65rem;
+  border-bottom: 1px solid rgba(13, 92, 90, 0.1);
+}
+
+.abbrev-table th {
+  color: var(--teal-deep);
+  font-weight: 700;
+}
+
+/* —— QUIZ —— */
+.quiz-shell {
+  background:
+    linear-gradient(160deg, rgba(8, 63, 62, 0.95), rgba(13, 92, 90, 0.88)),
+    var(--teal-deep);
+  color: var(--white);
+  border-radius: 24px;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.quiz-shell::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(240, 215, 140, 0.2), transparent 70%);
+  top: -60px;
+  left: -40px;
+  pointer-events: none;
+}
+
+.quiz-progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+}
+
+.bar-track {
+  flex: 1;
+  min-width: 140px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold-soft), var(--gold));
+  border-radius: inherit;
+  transition: width 0.35s ease;
+}
+
+.quiz-question {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3.5vw, 1.85rem);
+  line-height: 1.35;
+  margin-bottom: 1.25rem;
+}
+
+.quiz-options {
+  display: grid;
+  gap: 0.7rem;
+  position: relative;
+  z-index: 1;
+}
+
+.option-btn {
+  text-align: right;
+  padding: 0.95rem 1.1rem;
+  border-radius: 14px;
+  background: rgba(255, 254, 249, 0.1);
+  border: 1px solid rgba(255, 254, 249, 0.22);
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.option-btn:hover:not(:disabled) {
+  background: rgba(255, 254, 249, 0.18);
+  transform: translateX(-3px);
+}
+
+.option-btn.correct {
+  background: rgba(45, 122, 79, 0.55);
+  border-color: #7dcea0;
+}
+
+.option-btn.wrong {
+  background: rgba(155, 44, 44, 0.45);
+  border-color: #e8a0a0;
+}
+
+.quiz-feedback {
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background: rgba(255, 254, 249, 0.12);
+  font-size: 0.95rem;
+  display: none;
+  position: relative;
+  z-index: 1;
+}
+
+.quiz-feedback.show { display: block; }
+
+.quiz-actions {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.65rem;
+  position: relative;
+  z-index: 1;
+}
+
+.quiz-result {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  padding: 1rem 0;
+}
+
+.quiz-result .score {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  color: var(--gold-soft);
+  line-height: 1;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.quiz-result p { opacity: 0.95; margin-bottom: 0.5rem; }
+
+.badge {
+  display: inline-block;
+  margin: 0.75rem 0 1.25rem;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  background: rgba(212, 160, 23, 0.25);
+  border: 1px solid rgba(240, 215, 140, 0.45);
+  font-weight: 700;
+  color: var(--gold-soft);
+}
+
+/* —— FOOTER —— */
+.site-footer {
+  margin-top: 3rem;
+  padding: 1.5rem 0 0.5rem;
+  border-top: 1px solid rgba(13, 92, 90, 0.12);
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+.site-footer a {
+  color: var(--teal);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@keyframes fadeRise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes mistDrift {
+  from { transform: translateX(0) scale(1); opacity: 0.7; }
+  to { transform: translateX(-30px) scale(1.05); opacity: 1; }
+}
+
+@media (max-width: 700px) {
+  .topbar-inner { justify-content: center; }
+  .nav-links { width: 100%; justify-content: center; }
+  .hero { min-height: 70vh; }
+  .note-layer.top { width: 70%; }
+  .note-layer.heart { width: 85%; }
+  .note-layer.base { width: 100%; }
 }
 </style>
 </head>
-
 <body>
+<div class="app-shell">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div class="brand-text">
+          <strong>أواسيس أكاديمي</strong>
+          <span>تعلّم العطور بثقة</span>
+        </div>
+      </div>
+      <nav class="nav-links" aria-label="التنقل الرئيسي">
+        <button type="button" class="active" data-nav="home">الرئيسية</button>
+        <button type="button" data-nav="learn">تعلّم</button>
+        <button type="button" data-nav="catalog">المنتجات</button>
+        <button type="button" data-nav="quiz">الاختبار</button>
+      </nav>
+      <div class="progress-pill" id="progressPill">التقدّم: 0%</div>
+    </div>
+  </header>
 
-<header>
-  <h2>📖 تدبّر القرآن</h2>
-  <p>نظام يومي – صفحة واحدة</p>
-</header>
+  <!-- HOME -->
+  <section id="panel-home" class="panel active">
+    <div class="hero">
+      <div class="hero-visual" aria-hidden="true"></div>
+      <div class="hero-mist" aria-hidden="true"></div>
+      <div class="hero-content">
+        <h1 class="hero-brand">أواسيس</h1>
+        <p class="hero-title">أكاديمية العطور التفاعلية</p>
+        <p class="hero-lead">افهم عطور أواسيس اونلاين خطوة بخطوة، اكتشف كل أنواع المنتجات، ثم اختبر نفسك حتى تتقن الأساسيات.</p>
+        <div class="cta-row">
+          <button type="button" class="btn btn-primary" data-nav="learn">ابدأ التعلّم</button>
+          <button type="button" class="btn btn-ghost" data-nav="catalog">استعرض المنتجات</button>
+        </div>
+      </div>
+    </div>
 
-<div class="card">
-  <div class="ayah">
-    ﴿بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ﴾
-  </div>
-  <p><b>التفسير:</b> أبدأ كل عمل مستعينًا بالله.</p>
-  <p class="meta">
-    📍 النوع: مكية<br>
-    ⏳ زمن النزول: قبل الهجرة<br>
-    📜 سبب النزول: افتتاح القرآن
-  </p>
+    <div class="section-head">
+      <h2>لماذا هذا التطبيق؟</h2>
+      <p>مصمّم لمن لا يعرف العطور بعد: نشرح المصطلحات، نعرض ما تبيعه أواسيس، ونقيس فهمك باختبار تفاعلي.</p>
+    </div>
+    <div class="concept-grid">
+      <article class="concept">
+        <h4>أساسيات العطر</h4>
+        <p>تركيزات العطر، الهرم العطري، والعائلات الشمية بلغة بسيطة.</p>
+        <span class="tag">دروس تفاعلية</span>
+      </article>
+      <article class="concept">
+        <h4>كتالوج أواسيس</h4>
+        <p>عطور، عناية بالبشرة، مكياج، أطقم هدايا، ساعات، وعروض التخرج.</p>
+        <span class="tag">كل الفئات</span>
+      </article>
+      <article class="concept">
+        <h4>اختبار النجاح</h4>
+        <p>أسئلة عملية من محتوى الموقع؛ احصل على شارة متدرّب أواسيس.</p>
+        <span class="tag">اختبر نفسك</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- LEARN -->
+  <section id="panel-learn" class="panel">
+    <div class="section-head">
+      <h2>مسار التعلّم</h2>
+      <p>خمس دروس قصيرة. أكملها بالترتيب ثم انتقل للاختبار.</p>
+    </div>
+    <div class="lesson-nav" id="lessonNav" role="tablist"></div>
+    <div class="lesson-stage" id="lessonStage"></div>
+  </section>
+
+  <!-- CATALOG -->
+  <section id="panel-catalog" class="panel">
+    <div class="section-head">
+      <h2>ماذا تقدّم أواسيس؟</h2>
+      <p>بناءً على متجر <a href="https://oasisonline.ps/ar" target="_blank" rel="noopener">oasisonline.ps</a> — رام الله، فلسطين.</p>
+    </div>
+    <div class="catalog-filters" id="catalogFilters"></div>
+    <div class="category-grid" id="categoryGrid"></div>
+    <div class="detail-drawer" id="detailDrawer"></div>
+
+    <div class="brand-cloud">
+      <h3>أشهر ماركات العطور في أواسيس</h3>
+      <div class="brand-tags" id="brandTags"></div>
+    </div>
+
+    <div class="brand-cloud" style="margin-top:1rem">
+      <h3>اختصارات تراها على أسماء المنتجات</h3>
+      <table class="abbrev-table">
+        <thead>
+          <tr><th>الاختصار</th><th>المعنى</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>EDT</td><td>ماء التواليت — تركيز خفيف نسبياً</td></tr>
+          <tr><td>EDP</td><td>ماء العطر — أقوى وأطول ثباتاً</td></tr>
+          <tr><td>Parfum / Elixir</td><td>تركيز عالٍ جداً وثبات قوي</td></tr>
+          <tr><td>BL</td><td>لوشن للجسم (Body Lotion)</td></tr>
+          <tr><td>SG / BSG</td><td>جل استحمام (Shower Gel)</td></tr>
+          <tr><td>DEO</td><td>مزيل عرق</td></tr>
+          <tr><td>MG / TS / 10ML</td><td>حجم سفر صغير أو بخاخ متنقّل</td></tr>
+          <tr><td>SET</td><td>طقم هدية بعدة قطع</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="panel-quiz" class="panel">
+    <div class="section-head">
+      <h2>اختبار أواسيس</h2>
+      <p>١٠ أسئلة. النجاح من ٧ فما فوق. يمكنك الإعادة في أي وقت.</p>
+    </div>
+    <div class="quiz-shell" id="quizShell"></div>
+  </section>
+
+  <footer class="site-footer">
+    تطبيق تعليمي مستقل مستوحى من متجر
+    <a href="https://oasisonline.ps/ar" target="_blank" rel="noopener">أواسيس اونلاين</a>
+    · رام الله · 0593 777 769 · info@oasisonline.net
+  </footer>
 </div>
 
-<div class="card">
-  <h3>🌙 وقفة إيمانية</h3>
-  <p>ابدأ يومك بالله… تتغير نيتك قبل عملك.</p>
-</div>
+<script>
+const STORAGE_KEY = "oasis-academy-progress-v1";
 
-<div class="card">
-  <h3>✅ تطبيق اليوم</h3>
-  <p>سمِّ الله قبل أي عمل اليوم.</p>
-</div>
+const lessons = [
+  {
+    id: "basics",
+    title: "ما هو العطر؟",
+    intro: "العطر مزيج من زيوت عطرية وكحول وماء. الفرق بين المنتجات غالباً يكون في «التركيز» أي كمية الزيت العطري.",
+    concepts: [
+      { title: "Eau de Cologne", body: "أخف تركيزاً، رائحة خفيفة تدوم ساعات قليلة. مناسب للاستخدام اليومي الخفيف.", tag: "خفيف" },
+      { title: "EDT — ماء التواليت", body: "تركيز متوسط-خفيف. شائع جداً في متاجر مثل أواسيس للرجال والنساء.", tag: "يومي" },
+      { title: "EDP — ماء العطر", body: "أقوى من EDT وثباته أطول. خيار ممتاز إذا أردت رائحة واضحة طوال اليوم.", tag: "ثابت" },
+      { title: "Parfum / Elixir", body: "أعلى تركيز. قطرات قليلة تكفي، والسعر عادة أعلى. مثال: SAUVAGE ELIXIR.", tag: "فاخر" }
+    ],
+    tip: "نصيحة أواسيس: انظر لاختصار الاسم (EDT / EDP / Elixir) قبل الشراء — هذا يحدد قوة الرائحة وثباتها أكثر من حجم الزجاجة."
+  },
+  {
+    id: "pyramid",
+    title: "هرم الروائح",
+    intro: "كل عطر يُبنى على ثلاث طبقات تتغيّر مع الوقت. هكذا تفهم لماذا الرائحة الأولى تختلف بعد ساعة.",
+    pyramid: true,
+    tip: "جرّب العطر على بشرتك وانتظر ١٥–٣٠ دقيقة قبل الحكم — الطبقة الوسطى والقاعدة تظهران لاحقاً."
+  },
+  {
+    id: "families",
+    title: "عائلات العطور",
+    intro: "العائلات الشمية تساعدك تختار بسرعة حتى لو لم تعرف الماركة.",
+    concepts: [
+      { title: "زهرية Floral", body: "ورود، ياسمين، فانيليا خفيفة. غالباً لعطور نسائية كلاسيكية مثل بعض إصدارات CHANEL وCHLOE.", tag: "أنثوي ناعم" },
+      { title: "خشبية Woody", body: "عود، أرز، صندل. دافئة وأنيقة — شائعة في TOM FORD مثل Oud Wood.", tag: "دافئ" },
+      { title: "شرقية / حارة", body: "عنبر، فانيليا، بهارات. غنية ومسائية. مثال تقريبي: Tobacco Vanille.", tag: "فاخر" },
+      { title: "منعشة / حمضية", body: "ليمون، برغموت، بحرية. مثالية للصباح والصيف مثل عائلات CK One.", tag: "خفيف" },
+      { title: "فوحية / عود", body: "عود وعنبر كثيف — محبوبة في المنطقة. مثال في أواسيس: AMBER OUD.", tag: "عربي" },
+      { title: "حلوة / فواكه", body: "خوخ، كرز، توت. جذابة وشبابية — مثل بعض عطور TOM FORD الفاكهية.", tag: "مرح" }
+    ],
+    tip: "إذا كنت مبتدئاً: ابدأ بعائلة واحدة تحبها (مثلاً منعشة)، ثم جرّب ماركتين منها في أواسيس."
+  },
+  {
+    id: "choose",
+    title: "كيف تختار عطرك؟",
+    intro: "لا يوجد عطر «الأفضل» للجميع. الاختيار يعتمد على المناسبة، الطقس، وثبات الرائحة على بشرتك.",
+    concepts: [
+      { title: "للعمل / النهار", body: "EDT أو عطور منعشة وخفيفة حتى لا تكون الرائحة قوية في أماكن مغلقة.", tag: "عملي" },
+      { title: "للمساء / المناسبات", body: "EDP أو Elixir بلمسة خشبية أو شرقية يعطي حضوراً أوضح.", tag: "أنيق" },
+      { title: "هدية", body: "اطّلع على أطقم الهدايا (SET): غالباً عطر + لوشن أو جل استحمام بسعر أوفر.", tag: "قيمة" },
+      { title: "اختبر على بشرتك", body: "الرائحة تختلف من شخص لآخر بسبب كيمياء الجلد. لا تعتمد فقط على الورق المخطط.", tag: "مهم" }
+    ],
+    tip: "في أواسيس ستجد أحجاماً ١٠٠ مل وأحجام سفر صغيرة — الحجم الصغير ممتاز للتجربة قبل الالتزام بزجاجة كبيرة."
+  },
+  {
+    id: "oasis",
+    title: "عالم منتجات أواسيس",
+    intro: "أواسيس اونلاين ليست عطوراً فقط. هذا ملخص سريع لكل ما تقدّمه الشركة.",
+    concepts: [
+      { title: "عطور", body: "عشرات الماركات العالمية: Dior، Tom Ford، Valentino، Versace، YSL، وغيرها.", tag: "الأساس" },
+      { title: "عناية بالبشرة", body: "منتجات Clarins للعناية والتنظيف والترطيب.", tag: "بشرة" },
+      { title: "ماكياج", body: "Bourjois، Clarins Make-up، Max Factor، Rimmel، Seventeen.", tag: "جمال" },
+      { title: "أطقم وهدايا", body: "مجموعات عطور + عناية، أطقم Clarins، وعروض التخرج.", tag: "هدايا" },
+      { title: "ساعات كروس", body: "فئة ساعات Cross ضمن المتجر.", tag: "إكسسوار" },
+      { title: "التواصل", body: "رام الله، فلسطين — هاتف 0593777769 — info@oasisonline.net", tag: "خدمة" }
+    ],
+    tip: "بعد إنهاء هذا الدرس، افتح تبويب «المنتجات» للتفاصيل، ثم انتقل للاختبار."
+  }
+];
 
-<button onclick="alert('سيتم إضافة الصفحات لاحقًا')">
-الصفحة التالية ➡️
-</button>
+const categories = [
+  {
+    id: "perfumes",
+    name: "عطور",
+    filter: "perfume",
+    blurb: "القسم الأكبر: عطور رجالية ونسائية ومشتركة من ماركات عالمية.",
+    tone: "linear-gradient(145deg, #0d5c5a, #083f3e)",
+    details: "تشمل EDT وEDP وParfum وElixir بأحجام مختلفة (غالباً ٥٠–١٠٠ مل). أمثلة من المتجر:",
+    examples: [
+      "MYSLF MEN EDP 100ML",
+      "SAUVAGE ELIXIR EDP 60ML",
+      "VALENTINO DONNA BORN IN ROMA EDP 100ML",
+      "TOM FORD Tobacco Vanille / Oud Wood / Lost Cherry",
+      "AMBER OUD WHITE EDITION 100ML",
+      "GUESS BELLA VITA PARADISO EDP 100ML"
+    ]
+  },
+  {
+    id: "skincare",
+    name: "عناية بالبشرة",
+    filter: "care",
+    blurb: "منتجات تنظيف وترطيب وحماية، أبرزها Clarins.",
+    tone: "linear-gradient(145deg, #1a7a6d, #0f4f48)",
+    details: "مناسب لمن يريد روتين بشرة بجانب العطر: منظفات، مرطبات، وعناية متخصصة.",
+    examples: [
+      "Clarins — منظفات ومرطبات",
+      "منتجات ترطيب صباحي ومسائي",
+      "عناية حسب نوع البشرة"
+    ]
+  },
+  {
+    id: "makeup",
+    name: "ماكياج",
+    filter: "beauty",
+    blurb: "وجه، عيون، شفاه، ومناكير من ماركات معروفة.",
+    tone: "linear-gradient(145deg, #8b3d4f, #5c2433)",
+    details: "الماركات في أواسيس تشمل Bourjois وClarins Make-up وMax Factor وRimmel وSeventeen.",
+    examples: [
+      "Bourjois — وجه، شفاه، عيون، مناكير",
+      "Clarins Make-up — وجه، عيون، شفاه",
+      "Max Factor · Rimmel · Seventeen"
+    ]
+  },
+  {
+    id: "gifts",
+    name: "أطقم هدايا",
+    filter: "gifts",
+    blurb: "مجموعات جاهزة للهدايا: عطر مع لوشن أو جل أو حجم سفر.",
+    tone: "linear-gradient(145deg, #b8860b, #7a5a12)",
+    details: "ابحث عن كلمة SET في الاسم. غالباً أوفر من شراء القطع منفصلة.",
+    examples: [
+      "VERSACE EROS EDP SET (عطر + جل + حجم صغير)",
+      "212 VIP ROSE EDP + Body Lotion + 10ml",
+      "JPG SCANDAL INTENSE — طقم متعدد القطع",
+      "أطقم Michael Kors وMarc Jacobs"
+    ]
+  },
+  {
+    id: "clarins-sets",
+    name: "أطقم كلارنس",
+    filter: "gifts",
+    blurb: "مجموعات Clarins جاهزة كهدية أو لبداية روتين عناية.",
+    tone: "linear-gradient(145deg, #2f6b5a, #1a433a)",
+    details: "تجمع عدة منتجات عناية في عبوة واحدة — مثالية لمن يبدأ بالعناية الفاخرة.",
+    examples: ["أطقم Clarins المتنوعة في قسم الهدايا والعناية"]
+  },
+  {
+    id: "watches",
+    name: "ساعات كروس",
+    filter: "extra",
+    blurb: "فئة ساعات Cross ضمن المتجر إلى جانب العطور والجمال.",
+    tone: "linear-gradient(145deg, #3d4f5f, #1f2a33)",
+    details: "خيار إكسسوار أنيق يمكن دمجه مع هدية عطر.",
+    examples: ["ساعات Cross في قسم ساعات كروس"]
+  },
+  {
+    id: "graduation",
+    name: "عروض التخرج",
+    filter: "gifts",
+    blurb: "عروض موسمية مناسبة للهدايا والتخرج.",
+    tone: "linear-gradient(145deg, #0d5c5a, #c9a66b)",
+    details: "راجع هذا القسم في المواسم المناسبة لعثور على باقات مخفّضة أو جاهزة للإهداء.",
+    examples: ["عروض تخرج موسمية على عطور وأطقم"]
+  }
+];
 
+const brands = [
+  "DIOR","CHANEL","TOM FORD","VALENTINO","VERSACE","YVES SAINT LAURENT","GUCCI","PRADA",
+  "PACO RABANNE","Jean Paul Gaultier","CAROLINA HERRERA","CALVIN KLEIN","GIORGIO ARMANI",
+  "GIVENCHY","BURBERRY","BOSS","CREED","ELIE SAAB","CHLOE","MUGLER","LANCOME","DAVIDOFF",
+  "ROBERTO CAVALLI","DUNHILL","GUESS","24 FRAGRANCE","AL HARAMAIN","MOLINARD","AZZARO","DIESEL"
+];
+
+const quizBank = [
+  {
+    q: "ماذا يعني اختصار EDP على زجاجة عطر في أواسيس؟",
+    options: ["ماء التواليت بتركيز خفيف", "ماء العطر بتركيز أقوى من EDT", "جل استحمام معطر", "لوشن للجسم"],
+    answer: 1,
+    explain: "EDP = Eau de Parfum، أقوى وأطول ثباتاً عادة من EDT."
+  },
+  {
+    q: "أي طبقة في هرم العطر تظهر أولاً ثم تتبخر بسرعة؟",
+    options: ["القاعدة Base", "القلب Heart", "القمة Top", "اللوشن"],
+    answer: 2,
+    explain: "نوتات القمة هي الانطباع الأول وتدوم دقائق قليلة نسبياً."
+  },
+  {
+    q: "أي من التالي فئة منتجات حقيقية في متجر أواسيس؟",
+    options: ["أجهزة منزلية فقط", "عطور وعناية وماكياج وأطقم هدايا", "قطع سيارات", "أدوات مطبخ"],
+    answer: 1,
+    explain: "أواسيس متجر تجميل وعطور: عطور، Clarins، مكياج، أطقم، ساعات كروس، وعروض تخرج."
+  },
+  {
+    q: "ماذا يشير غالباً الاختصار BL في اسم طقم هدية؟",
+    options: ["عطر مركز جداً", "لوشن للجسم", "ساعة يد", "كريم أظافر"],
+    answer: 1,
+    explain: "BL = Body Lotion، يظهر كثيراً في أطقم مثل 212 VIP ROSE + BL."
+  },
+  {
+    q: "أي تركيز يناسب عادة المساء أو المناسبات أكثر؟",
+    options: ["Cologne فقط", "EDP أو Elixir", "ماء بدون زيوت", "معطر جو"],
+    answer: 1,
+    explain: "التركيزات الأعلى تعطي حضوراً أوضح وثباتاً أطول للمناسبات."
+  },
+  {
+    q: "عائلة Woody تشير إلى روائح…",
+    options: ["ليمون وبرتقال فقط", "خشب مثل العود والأرز والصندل", "شوكولاتة فقط", "مناديل معطرة"],
+    answer: 1,
+    explain: "العائلة الخشبية دافئة وأنيقة — مثال شهير: Oud Wood من Tom Ford."
+  },
+  {
+    q: "ما أفضل طريقة لتقييم عطر قبل الشراء؟",
+    options: ["الشم من الزجاجة فقط فوراً", "رشّه على البشرة والانتظار قليلاً", "اختيار أغلى سعر دائماً", "تجاهل التركيز"],
+    answer: 1,
+    explain: "الرائحة تتطور على البشرة؛ انتظر ظهور القلب والقاعدة."
+  },
+  {
+    q: "ماركة العناية الأبرز ضمن قسم البشرة في أواسيس هي…",
+    options: ["Clarins", "Ferrari", "Cross فقط", "Jaguar"],
+    answer: 0,
+    explain: "Clarins هي ماركة العناية الأساسية الظاهرة في المتجر."
+  },
+  {
+    q: "كلمة SET في اسم المنتج تعني غالباً…",
+    options: ["عطر تالف", "طقم هدية بعدة قطع", "تخفيض ٥٪ فقط", "عينة مجانية دائماً"],
+    answer: 1,
+    explain: "الأطقم تجمع العطر مع جل أو لوشن أو حجم سفر."
+  },
+  {
+    q: "أين يقع متجر أواسيس اونلاين حسب معلومات الموقع؟",
+    options: ["رام الله، فلسطين", "دبي فقط", "باريس", "عمّان فقط"],
+    answer: 0,
+    explain: "الموقع يذكر رام الله، فلسطين، مع رقم 0593777769."
+  }
+];
+
+let state = loadState();
+let currentLesson = 0;
+let quizIndex = 0;
+let quizScore = 0;
+let quizAnswered = false;
+let quizDone = false;
+let activeFilter = "all";
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return { completedLessons: [], bestScore: 0, quizPassed: false };
+    return { completedLessons: [], bestScore: 0, quizPassed: false, ...JSON.parse(raw) };
+  } catch {
+    return { completedLessons: [], bestScore: 0, quizPassed: false };
+  }
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  updateProgress();
+}
+
+function updateProgress() {
+  const lessonPart = (state.completedLessons.length / lessons.length) * 70;
+  const quizPart = state.quizPassed ? 30 : Math.min(20, (state.bestScore / quizBank.length) * 20);
+  const total = Math.round(lessonPart + quizPart);
+  document.getElementById("progressPill").textContent = `التقدّم: ${total}%`;
+}
+
+function showPanel(id) {
+  document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
+  document.getElementById(`panel-${id}`).classList.add("active");
+  document.querySelectorAll(".nav-links button").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.nav === id);
+  });
+  if (id === "learn") renderLesson();
+  if (id === "catalog") renderCatalog();
+  if (id === "quiz") renderQuiz();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.querySelectorAll("[data-nav]").forEach(el => {
+  el.addEventListener("click", () => showPanel(el.dataset.nav));
+});
+
+function renderLessonNav() {
+  const nav = document.getElementById("lessonNav");
+  nav.innerHTML = lessons.map((l, i) => {
+    const done = state.completedLessons.includes(l.id);
+    const active = i === currentLesson ? "active" : "";
+    return `<button type="button" class="lesson-chip ${active} ${done ? "done" : ""}" data-lesson="${i}">${i + 1}. ${l.title}</button>`;
+  }).join("");
+  nav.querySelectorAll("[data-lesson]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      currentLesson = Number(btn.dataset.lesson);
+      renderLesson();
+    });
+  });
+}
+
+function renderLesson() {
+  renderLessonNav();
+  const lesson = lessons[currentLesson];
+  const stage = document.getElementById("lessonStage");
+  let body = `<h3>${lesson.title}</h3><p class="lesson-intro">${lesson.intro}</p>`;
+
+  if (lesson.pyramid) {
+    body += `
+      <div class="pyramid">
+        <div class="note-layer top"><strong>القمة — Top Notes</strong><span>الانطباع الأول · دقائق إلى نحو ساعة</span></div>
+        <div class="note-layer heart"><strong>القلب — Heart Notes</strong><span>شخصية العطر الحقيقية · ساعات</span></div>
+        <div class="note-layer base"><strong>القاعدة — Base Notes</strong><span>الثبات والذكرى · حتى نهاية اليوم</span></div>
+      </div>`;
+  }
+
+  if (lesson.concepts) {
+    body += `<div class="concept-grid">${lesson.concepts.map(c => `
+      <article class="concept">
+        <h4>${c.title}</h4>
+        <p>${c.body}</p>
+        <span class="tag">${c.tag}</span>
+      </article>`).join("")}</div>`;
+  }
+
+  body += `<div class="tip-box">${lesson.tip}</div>`;
+  body += `<div class="lesson-actions">
+    <button type="button" class="btn btn-ghost" style="color:var(--teal-deep);border-color:rgba(13,92,90,.25);background:rgba(13,92,90,.06)" id="prevLesson" ${currentLesson === 0 ? "disabled" : ""}>السابق</button>
+    <button type="button" class="btn btn-teal" id="completeLesson">${currentLesson === lessons.length - 1 ? "إنهاء الدروس ← الاختبار" : "فهمت، الدرس التالي"}</button>
+  </div>`;
+
+  stage.innerHTML = body;
+
+  document.getElementById("prevLesson")?.addEventListener("click", () => {
+    if (currentLesson > 0) {
+      currentLesson -= 1;
+      renderLesson();
+    }
+  });
+
+  document.getElementById("completeLesson").addEventListener("click", () => {
+    if (!state.completedLessons.includes(lesson.id)) {
+      state.completedLessons.push(lesson.id);
+      saveState();
+    } else {
+      updateProgress();
+    }
+    if (currentLesson < lessons.length - 1) {
+      currentLesson += 1;
+      renderLesson();
+    } else {
+      showPanel("quiz");
+    }
+  });
+}
+
+function renderCatalog() {
+  const filters = [
+    { id: "all", label: "الكل" },
+    { id: "perfume", label: "عطور" },
+    { id: "care", label: "عناية" },
+    { id: "beauty", label: "جمال" },
+    { id: "gifts", label: "هدايا" },
+    { id: "extra", label: "إضافات" }
+  ];
+
+  document.getElementById("catalogFilters").innerHTML = filters.map(f =>
+    `<button type="button" class="filter-btn ${activeFilter === f.id ? "active" : ""}" data-filter="${f.id}">${f.label}</button>`
+  ).join("");
+
+  document.querySelectorAll("[data-filter]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      activeFilter = btn.dataset.filter;
+      renderCatalog();
+    });
+  });
+
+  const filtered = activeFilter === "all"
+    ? categories
+    : categories.filter(c => c.filter === activeFilter);
+
+  document.getElementById("categoryGrid").innerHTML = filtered.map(c => `
+    <button type="button" class="category-tile" style="background:${c.tone}" data-cat="${c.id}">
+      <h3>${c.name}</h3>
+      <p>${c.blurb}</p>
+      <div class="meta">اضغط للتفاصيل ←</div>
+    </button>
+  `).join("");
+
+  document.querySelectorAll("[data-cat]").forEach(btn => {
+    btn.addEventListener("click", () => openCategory(btn.dataset.cat));
+  });
+
+  document.getElementById("brandTags").innerHTML = brands.map(b => `<span>${b}</span>`).join("");
+}
+
+function openCategory(id) {
+  const c = categories.find(x => x.id === id);
+  if (!c) return;
+  const drawer = document.getElementById("detailDrawer");
+  drawer.classList.add("open");
+  drawer.innerHTML = `
+    <h3>${c.name}</h3>
+    <p>${c.details}</p>
+    <ul class="example-list">${c.examples.map(e => `<li>${e}</li>`).join("")}</ul>
+  `;
+  drawer.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function shuffledQuiz() {
+  return [...quizBank].sort(() => Math.random() - 0.5);
+}
+
+let activeQuiz = shuffledQuiz();
+
+function renderQuiz() {
+  const shell = document.getElementById("quizShell");
+  if (quizDone) {
+    const passed = quizScore >= 7;
+    if (quizScore > state.bestScore) state.bestScore = quizScore;
+    if (passed) state.quizPassed = true;
+    saveState();
+    shell.innerHTML = `
+      <div class="quiz-result">
+        <p>نتيجتك</p>
+        <div class="score">${quizScore} / ${activeQuiz.length}</div>
+        <div class="badge">${passed ? "شارة متدرّب أواسيس ✓" : "حاول مرة أخرى — أنت قريب"}</div>
+        <p>${passed
+          ? "ممتاز! أصبحت تفهم تركيزات العطر، هرم الروائح، وفئات منتجات أواسيس."
+          : "راجع دروس التعلّم وقسم المنتجات، ثم أعد الاختبار. النجاح من ٧ فأكثر."}</p>
+        <div class="cta-row" style="justify-content:center;margin-top:1.25rem">
+          <button type="button" class="btn btn-primary" id="retryQuiz">إعادة الاختبار</button>
+          <button type="button" class="btn btn-ghost" data-nav="learn">مراجعة الدروس</button>
+        </div>
+      </div>`;
+    document.getElementById("retryQuiz").addEventListener("click", () => {
+      activeQuiz = shuffledQuiz();
+      quizIndex = 0;
+      quizScore = 0;
+      quizAnswered = false;
+      quizDone = false;
+      renderQuiz();
+    });
+    shell.querySelector("[data-nav='learn']").addEventListener("click", () => showPanel("learn"));
+    return;
+  }
+
+  const item = activeQuiz[quizIndex];
+  const pct = (quizIndex / activeQuiz.length) * 100;
+  shell.innerHTML = `
+    <div class="quiz-progress">
+      <span>سؤال ${quizIndex + 1} من ${activeQuiz.length}</span>
+      <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
+      <span>النقاط: ${quizScore}</span>
+    </div>
+    <h3 class="quiz-question">${item.q}</h3>
+    <div class="quiz-options">
+      ${item.options.map((opt, i) => `<button type="button" class="option-btn" data-opt="${i}">${opt}</button>`).join("")}
+    </div>
+    <div class="quiz-feedback" id="quizFeedback"></div>
+    <div class="quiz-actions">
+      <button type="button" class="btn btn-primary" id="nextQ" disabled>${quizIndex === activeQuiz.length - 1 ? "عرض النتيجة" : "التالي"}</button>
+    </div>
+  `;
+
+  shell.querySelectorAll("[data-opt]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (quizAnswered) return;
+      quizAnswered = true;
+      const chosen = Number(btn.dataset.opt);
+      const correct = item.answer;
+      shell.querySelectorAll("[data-opt]").forEach(b => {
+        b.disabled = true;
+        const idx = Number(b.dataset.opt);
+        if (idx === correct) b.classList.add("correct");
+        if (idx === chosen && chosen !== correct) b.classList.add("wrong");
+      });
+      if (chosen === correct) quizScore += 1;
+      const fb = document.getElementById("quizFeedback");
+      fb.classList.add("show");
+      fb.textContent = (chosen === correct ? "صحيح! " : "ليس بعد. ") + item.explain;
+      document.getElementById("nextQ").disabled = false;
+      document.querySelector(".bar-fill").style.width = `${((quizIndex + 1) / activeQuiz.length) * 100}%`;
+    });
+  });
+
+  document.getElementById("nextQ").addEventListener("click", () => {
+    if (!quizAnswered) return;
+    if (quizIndex >= activeQuiz.length - 1) {
+      quizDone = true;
+    } else {
+      quizIndex += 1;
+      quizAnswered = false;
+    }
+    renderQuiz();
+  });
+}
+
+updateProgress();
+renderLessonNav();
+</script>
 </body>
 </html>
