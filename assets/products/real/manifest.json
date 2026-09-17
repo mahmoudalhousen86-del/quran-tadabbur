@@ -1,0 +1,680 @@
+[
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Ck Cko Summer Prm Edt 100Ml",
+    "type": "EDT",
+    "img": "assets/products/real/CALVIN-KLEIN_CK-CKO-SUMMER-PRM-EDT-100ML.jpg"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Ck Defy Edp",
+    "type": "EDP",
+    "img": "assets/products/real/CALVIN-KLEIN_CK-DEFY-EDP.jpg"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Ck Defy Edt 100Ml",
+    "type": "EDT",
+    "img": "assets/products/real/CALVIN-KLEIN_CK-DEFY-EDT-100ML.jpg"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Ck Defy Parfum 100Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/CALVIN-KLEIN_CK-DEFY-PARFUM-100ML.jpg"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Ck Eternity For Women Summer Reflections Edp 100Ml Fy23",
+    "type": "EDP",
+    "img": "assets/products/real/CALVIN-KLEIN_CK-Eternity-for-Women-Summer-Reflections-EDP-100ml-FY23.jpg"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Ck Eternity Man Essential Parfum 100Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/CALVIN-KLEIN_CK-ETERNITY-MAN-ESSENTIAL-PARFUM-100ML.jpg"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Ck Eternity Men Summer Reflections Edt 100Ml Fy23",
+    "type": "EDT",
+    "img": "assets/products/real/CALVIN-KLEIN_CK-Eternity-Men-Summer-Reflections-EDT-100ml-FY23.jpg"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Ck Eternity Woman Intense Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/CALVIN-KLEIN_CK-Eternity-Woman-Intense-EDP-100ml.jpg"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Ck Eternity Woman Summer Prm Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/CALVIN-KLEIN_CK-ETERNITY-WOMAN-SUMMER-PRM-EDP-100ML.jpg"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Ck Etm Amber Essence Parfum 100Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/CALVIN-KLEIN_CK-ETM-AMBER-ESSENCE-PARFUM-100ML.jpg"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Ck Etw Amber Essence Parfum 100Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/CALVIN-KLEIN_CK-ETW-AMBER-ESSENCE-PARFUM-100ML.jpg"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Ck One Essence Parfum Intense 100Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/CALVIN-KLEIN_CK-ONE-ESSENCE-PARFUM-INTENSE-100ML.webp"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Ck One Night Essence Edp",
+    "type": "EDP",
+    "img": "assets/products/real/CALVIN-KLEIN_CK-ONE-NIGHT-ESSENCE-EDP.jpg"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Ck One Summer Reflections Edt 100Ml",
+    "type": "EDT",
+    "img": "assets/products/real/CALVIN-KLEIN_CK-One-Summer-Reflections-EDT-100ml.jpg"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Ck To Be Edt 200Ml",
+    "type": "EDT",
+    "img": "assets/products/real/CALVIN-KLEIN_CK-TO-BE-EDT-200ML.jpg"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Euphoria Bold Elixir Parfum Intense 100Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/CALVIN-KLEIN_EUPHORIA-BOLD-ELIXIR-PARFUM-INTENSE-100ML.webp"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Euphoria Magnetic Elixir Parfum Intense 100Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/CALVIN-KLEIN_EUPHORIA-MAGNETIC-ELIXIR-PARFUM-INTENSE-100ML.webp"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Euphoria Solar Elixir Parfum Intense 100Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/CALVIN-KLEIN_EUPHORIA-SOLAR-ELIXIR-PARFUM-INTENSE-100ML.jpg"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "My Euphoria Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/CALVIN-KLEIN_My-Euphoria-EDP-100ml.webp"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Product 21",
+    "type": "Fragrance",
+    "img": "assets/products/real/CALVIN-KLEIN_Product-21.jpg"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Product 22",
+    "type": "Fragrance",
+    "img": "assets/products/real/CALVIN-KLEIN_Product-22.jpg"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Product 23",
+    "type": "Fragrance",
+    "img": "assets/products/real/CALVIN-KLEIN_Product-23.jpg"
+  },
+  {
+    "brand": "CALVIN KLEIN",
+    "name": "Product 24",
+    "type": "Fragrance",
+    "img": "assets/products/real/CALVIN-KLEIN_Product-24.jpg"
+  },
+  {
+    "brand": "DIOR",
+    "name": "Dior Homme Intense Edp Vapo 150Ml",
+    "type": "EDP",
+    "img": "assets/products/real/DIOR_DIOR-HOMME-INTENSE-EDP-VAPO-150ML.jpg"
+  },
+  {
+    "brand": "DIOR",
+    "name": "Dior Joy Edp 90Ml",
+    "type": "EDP",
+    "img": "assets/products/real/DIOR_DIOR-JOY-EDP-90ML.jpg"
+  },
+  {
+    "brand": "DIOR",
+    "name": "Dior Sauvage Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/DIOR_DIOR-SAUVAGE-EDP-100ML.png"
+  },
+  {
+    "brand": "DIOR",
+    "name": "Dior Sauvage Edt 100Ml",
+    "type": "EDT",
+    "img": "assets/products/real/DIOR_DIOR-SAUVAGE-EDT-100ML.jpg"
+  },
+  {
+    "brand": "DIOR",
+    "name": "Dior Sauvage Elixir 100Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/DIOR_DIOR-SAUVAGE-ELIXIR-100ML.jpg"
+  },
+  {
+    "brand": "DIOR",
+    "name": "Fahrenheit Edt 100Ml",
+    "type": "EDT",
+    "img": "assets/products/real/DIOR_FAHRENHEIT-EDT-100ML.jpg"
+  },
+  {
+    "brand": "DIOR",
+    "name": "J039Adore Edp Infinissime 100 Ml",
+    "type": "EDP",
+    "img": "assets/products/real/DIOR_J039ADORE-EDP-INFINISSIME-100-ML.jpg"
+  },
+  {
+    "brand": "DIOR",
+    "name": "J039Adore Edp Vapo 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/DIOR_J039ADORE-EDP-VAPO-100ml.jpg"
+  },
+  {
+    "brand": "DIOR",
+    "name": "Miss Dior Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/DIOR_MISS-DIOR-EDP-100ML.jpg"
+  },
+  {
+    "brand": "DIOR",
+    "name": "Sauvage Elixir Edp 60Ml",
+    "type": "EDP",
+    "img": "assets/products/real/DIOR_SAUVAGE-ELIXIR-EDP-60ML.webp"
+  },
+  {
+    "brand": "DIOR",
+    "name": "Sauvage Parfum 100Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/DIOR_Sauvage-Parfum-100ml.jpg"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Bloom Ambrosia Di Fiori Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/GUCCI_Gucci-Bloom-Ambrosia-Di-Fiori-EDP-100ML.png"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Bloom Doro Ambrosia Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/GUCCI_GUCCI-BLOOM-DORO-AMBROSIA-EDP-100ML.jpg"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Bloom Edt Rg 100Ml 2022",
+    "type": "EDT",
+    "img": "assets/products/real/GUCCI_Gucci-Bloom-EDT-RG-100ML-2022.jpg"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Bloom Intense Edp",
+    "type": "EDP",
+    "img": "assets/products/real/GUCCI_GUCCI-BLOOM-INTENSE-EDP.jpg"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Bloom Parfum Chryls 100Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/GUCCI_GUCCI-BLOOM-PARFUM-CHRYLS-100ML.jpg"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Bloom Profumo Di Fiori Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/GUCCI_Gucci-Bloom-Profumo-di-Fiori-EDP-100ML.jpg"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Flora Gorgeous Gardenia Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/GUCCI_Gucci-Flora-Gorgeous-Gardenia-EDP-100ml.jpg"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Flora Gorgeous Jasmine Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/GUCCI_Gucci-Flora-Gorgeous-Jasmine-EDP-100ML.jpg"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Flora Gorgeous Magnolia Edp",
+    "type": "EDP",
+    "img": "assets/products/real/GUCCI_Gucci-Flora-Gorgeous-Magnolia-EDP.png"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Flora Gorgeous Orchid Intense Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/GUCCI_GUCCI-FLORA-GORGEOUS-ORCHID-INTENSE-EDP-100ML.webp"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Flora Gorgeous Orchid Intense Edp Refill 150Ml",
+    "type": "EDP",
+    "img": "assets/products/real/GUCCI_GUCCI-FLORA-GORGEOUS-ORCHID-INTENSE-EDP-REFILL-150ML.jpg"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Guilty Absolu De Parfum Pour Femme 60Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/GUCCI_GUCCI-GUILTY-ABSOLU-DE-PARFUM-POUR-FEMME-60ML.jpg"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Guilty Absolu De Parfum Pour Homme 60Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/GUCCI_GUCCI-GUILTY-ABSOLU-DE-PARFUM-POUR-HOMME-60ML.png"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Guilty Elixir De Parfum Pour Femme 60Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/GUCCI_Gucci-Guilty-Elixir-De-Parfum-Pour-Femme-60ML.png"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Guilty Elixir De Parfum Pour Homme 60Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/GUCCI_Gucci-Guilty-Elixir-De-Parfum-Pour-Homme-60ML.jpg"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Guilty Love Edition Pour Homme Edp 90Ml",
+    "type": "EDP",
+    "img": "assets/products/real/GUCCI_GUCCI-GUILTY-LOVE-EDITION-POUR-HOMME-EDP-90ML.jpg"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Guilty Ph Parfum Edp 90Ml",
+    "type": "EDP",
+    "img": "assets/products/real/GUCCI_GUCCI-GUILTY-PH-PARFUM-EDP-90ML.jpg"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Guilty Pour Femme Edp 90 Ml",
+    "type": "EDP",
+    "img": "assets/products/real/GUCCI_Gucci-Guilty-Pour-Femme-EDP-90-ML.jpg"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Guilty Pour Femme Edp Intense 90Ml",
+    "type": "EDP",
+    "img": "assets/products/real/GUCCI_Gucci-Guilty-Pour-Femme-EDP-Intense-90ML.jpg"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Gucci Guilty Pour Homme Edp",
+    "type": "EDP",
+    "img": "assets/products/real/GUCCI_Gucci-Guilty-Pour-Homme-EDP.jpg"
+  },
+  {
+    "brand": "GUCCI",
+    "name": "Product 23",
+    "type": "Fragrance",
+    "img": "assets/products/real/GUCCI_Product-23.jpg"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "1 Million Royal Parfum 100Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/PACO-RABANNE_1-MILLION-ROYAL-PARFUM-100ML.jpg"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "1M Black Edp",
+    "type": "EDP",
+    "img": "assets/products/real/PACO-RABANNE_1M-BLACK-EDP.webp"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "1Million Golden Oud Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/PACO-RABANNE_1MILLION-GOLDEN-OUD-EDP-100ML.webp"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Fame Couture Edition Edt 80Ml",
+    "type": "EDT",
+    "img": "assets/products/real/PACO-RABANNE_FAME-COUTURE-EDITION-EDT-80ML.webp"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Fame Parfum 80Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/PACO-RABANNE_FAME-PARFUM-80ML.webp"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Invictus Parfum 100Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/PACO-RABANNE_INVICTUS-PARFUM-100ML.jpg"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Invictus Victory Absolu Parfum Intense 100Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/PACO-RABANNE_INVICTUS-VICTORY-ABSOLU-PARFUM-INTENSE-100ML.jpg"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Lady Million Gold Edp",
+    "type": "EDP",
+    "img": "assets/products/real/PACO-RABANNE_Lady-Million-Gold-Edp.jpg"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Lady Million Royal Edp",
+    "type": "EDP",
+    "img": "assets/products/real/PACO-RABANNE_LADY-MILLION-ROYAL-EDP.jpg"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Million Gold Elixir Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/PACO-RABANNE_MILLION-GOLD-ELIXIR-EDP-100ML.jpg"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Million Gold For Her Parfum 90Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/PACO-RABANNE_MILLION-GOLD-FOR-HER-PARFUM-90ML.jpg"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Million Gold For Her Red Parfum",
+    "type": "Parfum",
+    "img": "assets/products/real/PACO-RABANNE_MILLION-GOLD-FOR-HER-RED-PARFUM.jpg"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Olympea Absolu Parfum Intense 80Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/PACO-RABANNE_OLYMPEA-ABSOLU-PARFUM-INTENSE-80ML.webp"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Olympea Le Parfum",
+    "type": "Parfum",
+    "img": "assets/products/real/PACO-RABANNE_OLYMPEA-LE-PARFUM.png"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "One Million Edt",
+    "type": "EDT",
+    "img": "assets/products/real/PACO-RABANNE_ONE-MILLION-EDT.jpg"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Phantom Elixir Parfum Intense 100Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/PACO-RABANNE_PHANTOM-ELIXIR-PARFUM-INTENSE-100ML.webp"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Phantom In Red Parfum Elixir 100Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/PACO-RABANNE_PHANTOM-IN-RED-PARFUM-ELIXIR-100ML.webp"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Product 18",
+    "type": "Fragrance",
+    "img": "assets/products/real/PACO-RABANNE_Product-18.jpg"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Product 19",
+    "type": "Fragrance",
+    "img": "assets/products/real/PACO-RABANNE_Product-19.jpg"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Product 20",
+    "type": "Fragrance",
+    "img": "assets/products/real/PACO-RABANNE_Product-20.jpg"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Product 21",
+    "type": "Fragrance",
+    "img": "assets/products/real/PACO-RABANNE_Product-21.jpg"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Product 22",
+    "type": "Fragrance",
+    "img": "assets/products/real/PACO-RABANNE_Product-22.jpg"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Product 23",
+    "type": "Fragrance",
+    "img": "assets/products/real/PACO-RABANNE_Product-23.jpg"
+  },
+  {
+    "brand": "PACO RABANNE",
+    "name": "Product 24",
+    "type": "Fragrance",
+    "img": "assets/products/real/PACO-RABANNE_Product-24.jpg"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Bitter Peach Edp 50Ml",
+    "type": "EDP",
+    "img": "assets/products/real/TOM-FORD_BITTER-PEACH-EDP-50ML.jfif"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Black Orchid Edp 100 Ml",
+    "type": "EDP",
+    "img": "assets/products/real/TOM-FORD_Black-Orchid-EDP-100-ML.jpg"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Black Orchid Parfum 100Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/TOM-FORD_BLACK-ORCHID-PARFUM-100ML.webp"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Cherry Smoke Edp 50Ml",
+    "type": "EDP",
+    "img": "assets/products/real/TOM-FORD_CHERRY-SMOKE-EDP-50ML.webp"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Lost Cherry Edp 50Ml",
+    "type": "EDP",
+    "img": "assets/products/real/TOM-FORD_Lost-Cherry-EDP-50ml.jpg"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Myrrhe Mystere Edp 50Ml",
+    "type": "EDP",
+    "img": "assets/products/real/TOM-FORD_MYRRHE-MYSTERE-EDP-50ML.webp"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Neroli Portofino Edp 100 Ml",
+    "type": "EDP",
+    "img": "assets/products/real/TOM-FORD_Neroli-Portofino-EDP-100-ML.jpg"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Neroli Portofino Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/TOM-FORD_NEROLI-PORTOFINO-EDP-100ML.webp"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Noir Edp 100 Ml",
+    "type": "EDP",
+    "img": "assets/products/real/TOM-FORD_Noir-EDP-100-ML.jpg"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Noir Extreme Edp 100 Ml",
+    "type": "EDP",
+    "img": "assets/products/real/TOM-FORD_Noir-Extreme-EDP-100-ML.jpg"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Noir Pour Femme Edp",
+    "type": "EDP",
+    "img": "assets/products/real/TOM-FORD_Noir-Pour-Femme-EDP.jpg"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Ombre Leather Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/TOM-FORD_Ombre-Leather-EDP-100ML.jpg"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Ombre Leather Parfum 100Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/TOM-FORD_OMBRE-LEATHER-PARFUM-100ML.jpg"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Orchid Soleil Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/TOM-FORD_Orchid-Soleil-EDP-100ML.jpg"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Oud Wood Edp 100 Ml",
+    "type": "EDP",
+    "img": "assets/products/real/TOM-FORD_Oud-Wood-EDP-100-ML.jpg"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Oud Wood Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/TOM-FORD_Oud-Wood-EDP-100ML.jpg"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Tobacco Vanille Edp 100 Ml",
+    "type": "EDP",
+    "img": "assets/products/real/TOM-FORD_Tobacco-Vanille-EDP-100-ML.jpg"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Tobacco Vanille Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/TOM-FORD_Tobacco-Vanille-EDP-100ML.jpg"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Tomford Fucking Fabulous Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/TOM-FORD_Tomford-Fucking-Fabulous-EDP-100ML.jpg"
+  },
+  {
+    "brand": "TOM FORD",
+    "name": "Violet Blonde Edp 50 Ml",
+    "type": "EDP",
+    "img": "assets/products/real/TOM-FORD_Violet-Blonde-EDP-50-ML.jpg"
+  },
+  {
+    "brand": "VALENTINO",
+    "name": "Valentino Donna Born In Roma Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/VALENTINO_VALENTINO-DONNA-BORN-IN-ROMA-EDP-100ML.webp"
+  },
+  {
+    "brand": "VALENTINO",
+    "name": "Valentino Donna Born In Roma W Intense Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/VALENTINO_VALENTINO-DONNA-BORN-IN-ROMA-W-INTENSE-EDP-100ML.jpg"
+  },
+  {
+    "brand": "VALENTINO",
+    "name": "Valentino Uomo Born In Roma Edt 100Ml",
+    "type": "EDT",
+    "img": "assets/products/real/VALENTINO_VALENTINO-UOMO-BORN-IN-ROMA-EDT-100ML.jpg"
+  },
+  {
+    "brand": "VALENTINO",
+    "name": "Valentino Uomo Born In Roma Intense Edp 100Ml",
+    "type": "EDP",
+    "img": "assets/products/real/VALENTINO_VALENTINO-UOMO-BORN-IN-ROMA-INTENSE-EDP-100ML.jpg"
+  },
+  {
+    "brand": "VERSACE",
+    "name": "Dylan Blush Pink Edp",
+    "type": "EDP",
+    "img": "assets/products/real/VERSACE_DYLAN-BLUSH-PINK-EDP.jpg"
+  },
+  {
+    "brand": "VERSACE",
+    "name": "Eros Parfum",
+    "type": "Parfum",
+    "img": "assets/products/real/VERSACE_Eros-Parfum.jpg"
+  },
+  {
+    "brand": "VERSACE",
+    "name": "Versace Bright Parfum",
+    "type": "Parfum",
+    "img": "assets/products/real/VERSACE_VERSACE-BRIGHT-PARFUM.jpg"
+  },
+  {
+    "brand": "VERSACE",
+    "name": "Versace Crystal Noir Parfum 90Ml",
+    "type": "Parfum",
+    "img": "assets/products/real/VERSACE_VERSACE-CRYSTAL-NOIR-PARFUM-90ML.jpg"
+  },
+  {
+    "brand": "VERSACE",
+    "name": "Versace Dylan Purple Edp",
+    "type": "EDP",
+    "img": "assets/products/real/VERSACE_VERSACE-DYLAN-PURPLE-EDP.jpg"
+  },
+  {
+    "brand": "VERSACE",
+    "name": "Versace Dylan Purple Hair Mist 30Ml",
+    "type": "Fragrance",
+    "img": "assets/products/real/VERSACE_VERSACE-DYLAN-PURPLE-HAIR-MIST-30ML.jpg"
+  },
+  {
+    "brand": "VERSACE",
+    "name": "Versace Eau Fraiche Extreme Edp",
+    "type": "EDP",
+    "img": "assets/products/real/VERSACE_VERSACE-EAU-FRAICHE-EXTREME-EDP.jpg"
+  },
+  {
+    "brand": "VERSACE",
+    "name": "Versace Eros Energy Edp",
+    "type": "EDP",
+    "img": "assets/products/real/VERSACE_VERSACE-EROS-ENERGY-EDP.jpg"
+  },
+  {
+    "brand": "VERSACE",
+    "name": "Versace Eros Najim Parfum",
+    "type": "Parfum",
+    "img": "assets/products/real/VERSACE_VERSACE-EROS-NAJIM-PARFUM.jpg"
+  },
+  {
+    "brand": "VERSACE",
+    "name": "Versace Yellow Diamond Edt 90Ml",
+    "type": "EDT",
+    "img": "assets/products/real/VERSACE_VERSACE-YELLOW-DIAMOND-EDT-90ML.jpg"
+  }
+]
