@@ -1073,13 +1073,13 @@ a { color: inherit; text-decoration: none; }
     <div class="category-grid" id="categoryGrid"></div>
     <div class="detail-drawer" id="detailDrawer"></div>
 
-    <h3 class="products-heading">معرض المنتجات بالصور</h3>
-    <p class="products-note">صور توضيحية تعليمية لأنواع المنتجات المتوفرة لدى أواسيس (العطر الحقيقي قد يختلف في العبوة).</p>
+    <h3 class="products-heading">معرض المنتجات بالصور الحقيقية</h3>
+    <p class="products-note">صور المنتجات مأخوذة من متجر أواسيس اونلاين. اضغط الماركة أو المنتج لعرض التفاصيل.</p>
     <div class="product-grid" id="productGrid"></div>
 
     <div class="brand-cloud">
       <h3>أشهر ماركات العطور في أواسيس</h3>
-      <p class="products-note" style="margin-top:0.25rem">اضغط على أي ماركة لعرض العطور المتوفرة لدى أواسيس.</p>
+      <p class="products-note" style="margin-top:0.25rem">اضغط على أي ماركة لعرض عطورها بصور حقيقية من أواسيس (DIOR، Tom Ford، Gucci…).</p>
       <div class="brand-tags" id="brandTags"></div>
       <div class="brand-panel" id="brandPanel"></div>
     </div>
@@ -1124,6 +1124,7 @@ a { color: inherit; text-decoration: none; }
   </footer>
 </div>
 
+<script src="assets/products/real/catalog-data.js"></script>
 <script>
 const STORAGE_KEY = "oasis-academy-progress-v1";
 
@@ -1196,7 +1197,7 @@ const categories = [
     filter: "perfume",
     blurb: "القسم الأكبر: عطور رجالية ونسائية ومشتركة من ماركات عالمية.",
     tone: "linear-gradient(145deg, #0d5c5a, #083f3e)",
-    cover: "assets/products/perfumes/collection.jpg",
+    cover: (window.OASIS_REAL_PRODUCTS && window.OASIS_REAL_PRODUCTS[0] && window.OASIS_REAL_PRODUCTS[0].img) || "assets/products/perfumes/collection.jpg",
     details: "تشمل EDT وEDP وParfum وElixir بأحجام مختلفة (غالباً ٥٠–١٠٠ مل).",
     examples: [
       "MYSLF MEN EDP 100ML",
@@ -1283,87 +1284,8 @@ const categories = [
 ];
 
 const products = [
-  {
-    id: "sauvage",
-    name: "SAUVAGE ELIXIR EDP 60ML",
-    brand: "DIOR",
-    cat: "perfume",
-    type: "Elixir",
-    img: "assets/products/perfumes/sauvage-style.jpg",
-    desc: "تركيز عالٍ وثبات قوي — من المنتجات الجديدة الظاهرة في أواسيس."
-  },
-  {
-    id: "valentino",
-    name: "VALENTINO DONNA BORN IN ROMA EDP 100ML",
-    brand: "VALENTINO",
-    cat: "perfume",
-    type: "EDP",
-    img: "assets/products/perfumes/valentino-style.jpg",
-    desc: "عطر نسائي شهير ضمن قسم VALENTINO في المتجر."
-  },
-  {
-    id: "tomford",
-    name: "TOM FORD — Tobacco Vanille / Oud Wood",
-    brand: "TOM FORD",
-    cat: "perfume",
-    type: "EDP",
-    img: "assets/products/perfumes/tom-ford-style.jpg",
-    desc: "روائح خشبية وشرقية فاخرة من مجموعة Tom Ford."
-  },
-  {
-    id: "amber",
-    name: "AMBER OUD WHITE EDITION 100ML",
-    brand: "AMBER OUD",
-    cat: "perfume",
-    type: "EDP",
-    img: "assets/products/perfumes/amber-oud.jpg",
-    desc: "اتجاه عودي/عنبري محبوب في المنطقة."
-  },
-  {
-    id: "fresh",
-    name: "CK ONE / عطور منعشة",
-    brand: "CALVIN KLEIN",
-    cat: "perfume",
-    type: "EDT",
-    img: "assets/products/perfumes/fresh-citrus.jpg",
-    desc: "مناسبة للنهار والاستخدام اليومي بتركيز أخف."
-  },
-  {
-    id: "floral",
-    name: "عطور زهرية نسائية",
-    brand: "CHLOE / LANCOME",
-    cat: "perfume",
-    type: "EDP",
-    img: "assets/products/perfumes/floral-bottle.jpg",
-    desc: "عائلة زهرية ناعمة — خيار ممتاز للمبتدئات."
-  },
-  {
-    id: "ysl",
-    name: "MYSLF MEN EDP 100ML",
-    brand: "YVES SAINT LAURENT",
-    cat: "perfume",
-    type: "EDP",
-    img: "assets/products/perfumes/ysl-style.jpg",
-    desc: "من المنتجات الجديدة المعروضة في الصفحة الرئيسية لأواسيس."
-  },
-  {
-    id: "guess",
-    name: "GUESS BELLA VITA PARADISO EDP 100ML",
-    brand: "GUESS",
-    cat: "perfume",
-    type: "EDP",
-    img: "assets/products/perfumes/guess-style.jpg",
-    desc: "عطر نسائي ظاهر ضمن المنتجات الجديدة."
-  },
-  {
-    id: "luxury",
-    name: "عطور فاخرة مسائية",
-    brand: "CREED / GUCCI",
-    cat: "perfume",
-    type: "EDP",
-    img: "assets/products/perfumes/luxury-dark.jpg",
-    desc: "للمناسبات والمساء — غالباً تركيز أعلى."
-  },
+  // real Oasis perfume injected first from catalog-data.js
+  ...(window.OASIS_REAL_PRODUCTS || []),
   {
     id: "serum",
     name: "Clarins — سيروم وعناية مركّزة",
@@ -1465,307 +1387,7 @@ const products = [
   }
 ];
 
-const brandCatalog = [
-  {
-    name: "DIOR",
-    url: "https://oasisonline.ps/ar/Shop-Category/111/DIOR",
-    cover: "assets/products/perfumes/sauvage-style.jpg",
-    items: [
-      { name: "DIOR SAUVAGE ELIXIR 100ML", type: "Elixir", img: "assets/products/perfumes/sauvage-style.jpg" },
-      { name: "SAUVAGE ELIXIR EDP 60ML", type: "EDP", img: "assets/products/perfumes/sauvage-style.jpg" },
-      { name: "DIOR SAUVAGE EDP 100ML", type: "EDP", img: "assets/products/perfumes/luxury-dark.jpg" },
-      { name: "DIOR SAUVAGE EDT 100ML", type: "EDT", img: "assets/products/perfumes/fresh-citrus.jpg" },
-      { name: "Sauvage Parfum 100ml", type: "Parfum", img: "assets/products/perfumes/luxury-dark.jpg" },
-      { name: "MISS DIOR EDP 100ML", type: "EDP", img: "assets/products/perfumes/floral-bottle.jpg" },
-      { name: "J'ADORE EDP VAPO 100ml", type: "EDP", img: "assets/products/perfumes/floral-bottle.jpg" },
-      { name: "J'ADORE EDP INFINISSIME 100 ML", type: "EDP", img: "assets/products/perfumes/valentino-style.jpg" },
-      { name: "DIOR JOY EDP 90ML", type: "EDP", img: "assets/products/perfumes/guess-style.jpg" },
-      { name: "FAHRENHEIT EDT 100ML", type: "EDT", img: "assets/products/perfumes/amber-oud.jpg" },
-      { name: "DIOR HOMME INTENSE EDP 150ML", type: "EDP", img: "assets/products/perfumes/ysl-style.jpg" }
-    ]
-  },
-  {
-    name: "TOM FORD",
-    url: "https://oasisonline.ps/en/Shop-Category/48/TOM-FORD",
-    cover: "assets/products/perfumes/tom-ford-style.jpg",
-    items: [
-      { name: "Tobacco Vanille EDP 100ML", type: "EDP", img: "assets/products/perfumes/tom-ford-style.jpg" },
-      { name: "Oud Wood EDP 100ML", type: "EDP", img: "assets/products/perfumes/amber-oud.jpg" },
-      { name: "Lost Cherry EDP 50ml", type: "EDP", img: "assets/products/perfumes/valentino-style.jpg" },
-      { name: "Cherry Smoke EDP 50ML", type: "EDP", img: "assets/products/perfumes/luxury-dark.jpg" },
-      { name: "BLACK ORCHID PARFUM 100ML", type: "Parfum", img: "assets/products/perfumes/luxury-dark.jpg" },
-      { name: "OMBRE LEATHER PARFUM 100ML", type: "Parfum", img: "assets/products/perfumes/tom-ford-style.jpg" },
-      { name: "NEROLI PORTOFINO EDP 100ML", type: "EDP", img: "assets/products/perfumes/fresh-citrus.jpg" },
-      { name: "BITTER PEACH EDP 50ML", type: "EDP", img: "assets/products/perfumes/guess-style.jpg" },
-      { name: "CAFE ROSE EDP 100ML", type: "EDP", img: "assets/products/perfumes/floral-bottle.jpg" },
-      { name: "ROSE PRICK EDP 100ML", type: "EDP", img: "assets/products/perfumes/floral-bottle.jpg" },
-      { name: "MYRRHE MYSTERE EDP 50ML", type: "EDP", img: "assets/products/perfumes/amber-oud.jpg" },
-      { name: "Noir Extreme EDP 100 ML", type: "EDP", img: "assets/products/perfumes/luxury-dark.jpg" }
-    ]
-  },
-  {
-    name: "VALENTINO",
-    url: "https://oasisonline.ps/ar/Shop-Category/10/VALENTINO",
-    cover: "assets/products/perfumes/valentino-style.jpg",
-    items: [
-      { name: "VALENTINO UOMO BORN IN ROMA EDT 100ML", type: "EDT", img: "assets/products/perfumes/valentino-style.jpg" },
-      { name: "VALENTINO UOMO BORN IN ROMA INTENSE EDP 100ML", type: "EDP", img: "assets/products/perfumes/ysl-style.jpg" },
-      { name: "VALENTINO DONNA BORN IN ROMA EDP 100ML", type: "EDP", img: "assets/products/perfumes/floral-bottle.jpg" },
-      { name: "VALENTINO DONNA BORN IN ROMA W INTENSE EDP 100ML", type: "EDP", img: "assets/products/perfumes/guess-style.jpg" }
-    ]
-  },
-  {
-    name: "VERSACE",
-    url: "https://oasisonline.ps/en/Shop-Category/19/VERSACE",
-    cover: "assets/products/perfumes/luxury-dark.jpg",
-    items: [
-      { name: "VERSACE EROS ENERGY EDP", type: "EDP", img: "assets/products/perfumes/fresh-citrus.jpg" },
-      { name: "VERSACE EROS NAJIM PARFUM", type: "Parfum", img: "assets/products/perfumes/amber-oud.jpg" },
-      { name: "Dylan Blue Pour Homme EDT", type: "EDT", img: "assets/products/perfumes/sauvage-style.jpg" },
-      { name: "VERSACE CRYSTAL NOIR PARFUM 90ML", type: "Parfum", img: "assets/products/perfumes/luxury-dark.jpg" },
-      { name: "VERSACE YELLOW DIAMOND EDT 90ML", type: "EDT", img: "assets/products/perfumes/floral-bottle.jpg" },
-      { name: "VERSACE DYLAN PURPLE EDP", type: "EDP", img: "assets/products/perfumes/valentino-style.jpg" },
-      { name: "Versace Dylan Turquoise EDT", type: "EDT", img: "assets/products/perfumes/fresh-citrus.jpg" },
-      { name: "Eros Pour Femme EDP 100 ML", type: "EDP", img: "assets/products/perfumes/guess-style.jpg" },
-      { name: "DYLAN BLUSH PINK EDP", type: "EDP", img: "assets/products/perfumes/floral-bottle.jpg" },
-      { name: "VERSACE CRYSTAL EMERALD EDP", type: "EDP", img: "assets/products/perfumes/tom-ford-style.jpg" }
-    ]
-  },
-  {
-    name: "GUCCI",
-    url: "https://oasisonline.ps/en/Shop-Category/29/GUCCI",
-    cover: "assets/products/perfumes/floral-bottle.jpg",
-    items: [
-      { name: "GUCCI BLOOM D'ORO AMBROSIA EDP 100ML", type: "EDP", img: "assets/products/perfumes/floral-bottle.jpg" },
-      { name: "GUCCI FLORA GORGEOUS GARDENIA INTENSE 100ML", type: "EDP", img: "assets/products/perfumes/valentino-style.jpg" },
-      { name: "Gucci Guilty Pour Homme EDP", type: "EDP", img: "assets/products/perfumes/ysl-style.jpg" },
-      { name: "GUCCI GUILTY ABSOLU POUR HOMME 60ML", type: "Parfum", img: "assets/products/perfumes/luxury-dark.jpg" },
-      { name: "GUCCI GUILTY ABSOLU POUR FEMME 60ML", type: "Parfum", img: "assets/products/perfumes/guess-style.jpg" },
-      { name: "Gucci Bloom Ambrosia Di Fiori EDP 100ml", type: "EDP", img: "assets/products/perfumes/floral-bottle.jpg" },
-      { name: "Gucci Flora Gorgeous Jasmine EDP 100ML", type: "EDP", img: "assets/products/perfumes/fresh-citrus.jpg" },
-      { name: "GUCCI BLOOM INTENSE EDP", type: "EDP", img: "assets/products/perfumes/valentino-style.jpg" }
-    ]
-  },
-  {
-    name: "PACO RABANNE",
-    url: "https://oasisonline.ps/en/Shop-Category/26/PACO-RABANNE",
-    cover: "assets/products/perfumes/amber-oud.jpg",
-    items: [
-      { name: "MILLION GOLD ELIXIR EDP 100ML", type: "Elixir", img: "assets/products/perfumes/amber-oud.jpg" },
-      { name: "1 MILLION ROYAL PARFUM 100ML", type: "Parfum", img: "assets/products/perfumes/luxury-dark.jpg" },
-      { name: "PHANTOM ELIXIR PARFUM INTENSE 100ML", type: "Elixir", img: "assets/products/perfumes/fresh-citrus.jpg" },
-      { name: "INVICTUS VICTORY ELIXIR PARFUM", type: "Elixir", img: "assets/products/perfumes/sauvage-style.jpg" },
-      { name: "OLYMPEA ABSOLU PARFUM INTENSE 80ML", type: "Parfum", img: "assets/products/perfumes/floral-bottle.jpg" },
-      { name: "Lady Million Gold Edp", type: "EDP", img: "assets/products/perfumes/guess-style.jpg" },
-      { name: "LADY MILLION ROYAL EDP", type: "EDP", img: "assets/products/perfumes/valentino-style.jpg" },
-      { name: "1MILLION GOLDEN OUD EDP 100ML", type: "EDP", img: "assets/products/perfumes/tom-ford-style.jpg" }
-    ]
-  },
-  {
-    name: "CALVIN KLEIN",
-    url: "https://oasisonline.ps/en/Shop-Category/25/CALVIN-KLEIN",
-    cover: "assets/products/perfumes/fresh-citrus.jpg",
-    items: [
-      { name: "CK ONE ESSENCE PARFUM INTENSE 100ML", type: "Parfum", img: "assets/products/perfumes/fresh-citrus.jpg" },
-      { name: "CK ETERNITY MAN ESSENTIAL PARFUM 100ML", type: "Parfum", img: "assets/products/perfumes/ysl-style.jpg" },
-      { name: "CK ETERNITY WOMAN ESSENTIAL PARFUM 100ML", type: "Parfum", img: "assets/products/perfumes/floral-bottle.jpg" },
-      { name: "EUPHORIA SOLAR ELIXIR PARFUM INTENSE 100ML", type: "Elixir", img: "assets/products/perfumes/valentino-style.jpg" },
-      { name: "EUPHORIA MAGNETIC ELIXIR PARFUM INTENSE 100ML", type: "Elixir", img: "assets/products/perfumes/guess-style.jpg" },
-      { name: "My Euphoria EDP 100ml", type: "EDP", img: "assets/products/perfumes/floral-bottle.jpg" },
-      { name: "CK One Summer Reflections EDT 100ml", type: "EDT", img: "assets/products/perfumes/fresh-citrus.jpg" },
-      { name: "CK ETW AMBER ESSENCE PARFUM 100ML", type: "Parfum", img: "assets/products/perfumes/amber-oud.jpg" }
-    ]
-  },
-  {
-    name: "CHANEL",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/floral-bottle.jpg",
-    items: [
-      { name: "Chanel — عطور كلاسيكية نسائية ورجالية", type: "EDP/EDT", img: "assets/products/perfumes/floral-bottle.jpg" },
-      { name: "تشكيلة Chanel ضمن قسم العطور في أواسيس", type: "مجموعة", img: "assets/products/perfumes/collection.jpg" }
-    ]
-  },
-  {
-    name: "YVES SAINT LAURENT",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/ysl-style.jpg",
-    items: [
-      { name: "MYSLF MEN EDP 100ML", type: "EDP", img: "assets/products/perfumes/ysl-style.jpg" },
-      { name: "YSL — عطور رجالية ونسائية في أواسيس", type: "EDP", img: "assets/products/perfumes/luxury-dark.jpg" }
-    ]
-  },
-  {
-    name: "PRADA",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/fresh-citrus.jpg",
-    items: [
-      { name: "Prada — عطور ضمن كتالوج أواسيس", type: "EDP/EDT", img: "assets/products/perfumes/fresh-citrus.jpg" }
-    ]
-  },
-  {
-    name: "Jean Paul Gaultier",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/guess-style.jpg",
-    items: [
-      { name: "JPG LE BEAU / SCANDAL — أطقم وعطور", type: "EDT/EDP", img: "assets/products/perfumes/guess-style.jpg" },
-      { name: "JPG SCANDAL INTENSE — طقم هدية", type: "SET", img: "assets/products/gifts/gift-set.jpg" }
-    ]
-  },
-  {
-    name: "CAROLINA HERRERA",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/gifts/boxed-perfume.jpg",
-    items: [
-      { name: "212 VIP ROSE EDP 80ML + BL100 + 10ml", type: "SET", img: "assets/products/gifts/boxed-perfume.jpg" },
-      { name: "212 VIP BLACK ELIXIR SET", type: "SET", img: "assets/products/gifts/gift-set.jpg" },
-      { name: "CH BIRDS OF PARADISE EDP 100ML", type: "EDP", img: "assets/products/perfumes/floral-bottle.jpg" }
-    ]
-  },
-  {
-    name: "GIORGIO ARMANI",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/ysl-style.jpg",
-    items: [
-      { name: "Giorgio Armani — عطور في أواسيس", type: "EDP/EDT", img: "assets/products/perfumes/ysl-style.jpg" }
-    ]
-  },
-  {
-    name: "GIVENCHY",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/valentino-style.jpg",
-    items: [
-      { name: "GIVENCHY L'INTERDIT EDT 80ML", type: "EDT", img: "assets/products/perfumes/valentino-style.jpg" }
-    ]
-  },
-  {
-    name: "BURBERRY",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/collection.jpg",
-    items: [
-      { name: "Burberry — عطور ضمن قسم العطور", type: "EDP/EDT", img: "assets/products/perfumes/collection.jpg" }
-    ]
-  },
-  {
-    name: "BOSS",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/sauvage-style.jpg",
-    items: [
-      { name: "BOSS — عطور رجالية في أواسيس", type: "EDT/EDP", img: "assets/products/perfumes/sauvage-style.jpg" }
-    ]
-  },
-  {
-    name: "CREED",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/luxury-dark.jpg",
-    items: [
-      { name: "Creed — عطور فاخرة ضمن الكتالوج", type: "EDP", img: "assets/products/perfumes/luxury-dark.jpg" }
-    ]
-  },
-  {
-    name: "ELIE SAAB",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/floral-bottle.jpg",
-    items: [
-      { name: "Elie Saab — عطور نسائية فاخرة", type: "EDP", img: "assets/products/perfumes/floral-bottle.jpg" }
-    ]
-  },
-  {
-    name: "CHLOE",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/floral-bottle.jpg",
-    items: [
-      { name: "Chloé — عطور زهرية ناعمة", type: "EDP", img: "assets/products/perfumes/floral-bottle.jpg" }
-    ]
-  },
-  {
-    name: "MUGLER",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/luxury-dark.jpg",
-    items: [
-      { name: "Mugler — عطور مميزة في أواسيس", type: "EDP", img: "assets/products/perfumes/luxury-dark.jpg" }
-    ]
-  },
-  {
-    name: "LANCOME",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/valentino-style.jpg",
-    items: [
-      { name: "Lancôme — عطور نسائية كلاسيكية", type: "EDP", img: "assets/products/perfumes/valentino-style.jpg" }
-    ]
-  },
-  {
-    name: "DAVIDOFF",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/fresh-citrus.jpg",
-    items: [
-      { name: "Davidoff — عطور يومية ومنعشة", type: "EDT", img: "assets/products/perfumes/fresh-citrus.jpg" }
-    ]
-  },
-  {
-    name: "ROBERTO CAVALLI",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/guess-style.jpg",
-    items: [
-      { name: "Roberto Cavalli — عطور جريئة", type: "EDP", img: "assets/products/perfumes/guess-style.jpg" }
-    ]
-  },
-  {
-    name: "DUNHILL",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/brands/dunhill.jpg",
-    items: [
-      { name: "Dunhill — عطور رجالية كلاسيكية", type: "EDT/EDP", img: "assets/products/brands/dunhill.jpg" }
-    ]
-  },
-  {
-    name: "GUESS",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/guess-style.jpg",
-    items: [
-      { name: "GUESS BELLA VITA PARADISO EDP 100ML", type: "EDP", img: "assets/products/perfumes/guess-style.jpg" }
-    ]
-  },
-  {
-    name: "24 FRAGRANCE",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/amber-oud.jpg",
-    items: [
-      { name: "24 Fragrance — تشكيلة ضمن أواسيس", type: "EDP", img: "assets/products/perfumes/amber-oud.jpg" }
-    ]
-  },
-  {
-    name: "AL HARAMAIN",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/amber-oud.jpg",
-    items: [
-      { name: "Al Haramain — عطور عود وشرقية", type: "EDP", img: "assets/products/perfumes/amber-oud.jpg" }
-    ]
-  },
-  {
-    name: "MOLINARD",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/floral-bottle.jpg",
-    items: [
-      { name: "Molinard — عطور فرنسية في أواسيس", type: "EDP", img: "assets/products/perfumes/floral-bottle.jpg" }
-    ]
-  },
-  {
-    name: "AZZARO",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/sauvage-style.jpg",
-    items: [
-      { name: "Azzaro — عطور رجالية شهيرة", type: "EDT/EDP", img: "assets/products/perfumes/sauvage-style.jpg" }
-    ]
-  },
-  {
-    name: "DIESEL",
-    url: "https://oasisonline.ps/ar/Shop-Category/1/%D8%B9%D8%B7%D9%88%D8%B1",
-    cover: "assets/products/perfumes/luxury-dark.jpg",
-    items: [
-      { name: "Diesel — عطور عصرية في أواسيس", type: "EDT/EDP", img: "assets/products/perfumes/luxury-dark.jpg" }
-    ]
-  }
-];
+const brandCatalog = window.OASIS_BRAND_CATALOG || [];
 
 const brands = brandCatalog.map(b => b.name);
 
@@ -2031,7 +1653,7 @@ function openBrand(name) {
   panel.innerHTML = `
     <div class="brand-panel-head">
       <h4>${brand.name}</h4>
-      <span class="count">${brand.items.length} عطر/منتج في أواسيس</span>
+      <span class="count">${brand.items.length} عطر/منتج ${brand.real ? '· صور حقيقية من أواسيس' : 'في أواسيس'}</span>
     </div>
     <div>
       ${brand.items.map((item, i) => `
