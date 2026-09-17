@@ -159,9 +159,8 @@ a { color: inherit; text-decoration: none; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(8, 63, 62, 0.15) 0%, rgba(8, 63, 62, 0.72) 55%, rgba(8, 63, 62, 0.92) 100%),
-    radial-gradient(circle at 70% 30%, rgba(240, 215, 140, 0.35), transparent 40%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23083f3e'/%3E%3Cstop offset='1' stop-color='%230d5c5a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23g)' width='800' height='600'/%3E%3Cellipse cx='400' cy='480' rx='280' ry='40' fill='%230a4a48' opacity='.5'/%3E%3Cpath d='M180 420 Q250 280 320 420' fill='none' stroke='%23c9a66b' stroke-width='8'/%3E%3Cpath d='M480 430 Q560 250 640 430' fill='none' stroke='%23d4a017' stroke-width='10'/%3E%3Ccircle cx='320' cy='300' r='28' fill='%23f0d78c' opacity='.7'/%3E%3Ccircle cx='560' cy='260' r='36' fill='%23b8e0d8' opacity='.45'/%3E%3Ccircle cx='420' cy='200' r='18' fill='%23e8d5b5' opacity='.5'/%3E%3C/svg%3E") center/cover no-repeat;
+    linear-gradient(180deg, rgba(8, 63, 62, 0.25) 0%, rgba(8, 63, 62, 0.72) 55%, rgba(8, 63, 62, 0.92) 100%),
+    url("assets/products/perfumes/collection.jpg") center/cover no-repeat;
 }
 
 .hero-mist {
@@ -441,13 +440,43 @@ a { color: inherit; text-decoration: none; }
   position: relative;
   overflow: hidden;
   border-radius: var(--radius);
-  padding: 1.35rem 1.2rem 1.2rem;
-  min-height: 210px;
+  min-height: 240px;
   color: var(--white);
   text-align: right;
   transition: transform 0.3s, box-shadow 0.3s;
   box-shadow: 0 10px 30px rgba(8, 63, 62, 0.15);
   cursor: pointer;
+  padding: 0;
+  display: block;
+  width: 100%;
+}
+
+.category-tile .tile-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 0.45s ease;
+}
+
+.category-tile:hover .tile-img { transform: scale(1.08); }
+
+.category-tile .tile-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 63, 62, 0.15) 0%, rgba(8, 63, 62, 0.82) 70%);
+}
+
+.category-tile .tile-body {
+  position: relative;
+  z-index: 1;
+  padding: 1.35rem 1.2rem 1.2rem;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .category-tile:hover {
@@ -473,15 +502,138 @@ a { color: inherit; text-decoration: none; }
   opacity: 0.85;
 }
 
-.category-tile::before {
-  content: "";
-  position: absolute;
-  inset: auto -20% -30% auto;
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  pointer-events: none;
+.products-heading {
+  margin: 2rem 0 0.85rem;
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  color: var(--teal-deep);
+}
+
+.products-note {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-bottom: 1rem;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.product-card {
+  background: rgba(255, 254, 249, 0.92);
+  border: 1px solid rgba(13, 92, 90, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  text-align: right;
+  transition: transform 0.25s, box-shadow 0.25s;
+  cursor: pointer;
+  width: 100%;
+  color: inherit;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(8, 63, 62, 0.14);
+}
+
+.product-card .thumb {
+  aspect-ratio: 1;
+  background: #e8f2f0;
+  overflow: hidden;
+}
+
+.product-card .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover .thumb img { transform: scale(1.06); }
+
+.product-card .info {
+  padding: 0.85rem 0.9rem 1rem;
+}
+
+.product-card .info h4 {
+  font-size: 0.95rem;
+  color: var(--teal-deep);
+  line-height: 1.35;
+  margin-bottom: 0.25rem;
+}
+
+.product-card .info .brand-line {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+}
+
+.product-card .info p {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+.product-card .badge-type {
+  display: inline-block;
+  margin-top: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(13, 92, 90, 0.1);
+  color: var(--teal-deep);
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: rgba(8, 63, 62, 0.72);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  backdrop-filter: blur(6px);
+}
+
+.lightbox.open { display: flex; }
+
+.lightbox-card {
+  background: var(--white);
+  border-radius: 20px;
+  max-width: 520px;
+  width: 100%;
+  overflow: hidden;
+  animation: fadeRise 0.3s ease both;
+}
+
+.lightbox-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  background: #e8f2f0;
+}
+
+.lightbox-card .lb-body {
+  padding: 1.15rem 1.25rem 1.35rem;
+}
+
+.lightbox-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  color: var(--teal-deep);
+  margin-bottom: 0.35rem;
+}
+
+.lightbox-card p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 0.85rem; }
+
+.lightbox-close {
+  margin-top: 0.5rem;
+  width: 100%;
 }
 
 .brand-cloud {
@@ -835,9 +987,17 @@ a { color: inherit; text-decoration: none; }
     <div class="category-grid" id="categoryGrid"></div>
     <div class="detail-drawer" id="detailDrawer"></div>
 
+    <h3 class="products-heading">معرض المنتجات بالصور</h3>
+    <p class="products-note">صور توضيحية تعليمية لأنواع المنتجات المتوفرة لدى أواسيس (العطر الحقيقي قد يختلف في العبوة).</p>
+    <div class="product-grid" id="productGrid"></div>
+
     <div class="brand-cloud">
       <h3>أشهر ماركات العطور في أواسيس</h3>
       <div class="brand-tags" id="brandTags"></div>
+    </div>
+
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="تفاصيل المنتج">
+      <div class="lightbox-card" id="lightboxCard"></div>
     </div>
 
     <div class="brand-cloud" style="margin-top:1rem">
@@ -948,7 +1108,8 @@ const categories = [
     filter: "perfume",
     blurb: "القسم الأكبر: عطور رجالية ونسائية ومشتركة من ماركات عالمية.",
     tone: "linear-gradient(145deg, #0d5c5a, #083f3e)",
-    details: "تشمل EDT وEDP وParfum وElixir بأحجام مختلفة (غالباً ٥٠–١٠٠ مل). أمثلة من المتجر:",
+    cover: "assets/products/perfumes/collection.jpg",
+    details: "تشمل EDT وEDP وParfum وElixir بأحجام مختلفة (غالباً ٥٠–١٠٠ مل).",
     examples: [
       "MYSLF MEN EDP 100ML",
       "SAUVAGE ELIXIR EDP 60ML",
@@ -964,6 +1125,7 @@ const categories = [
     filter: "care",
     blurb: "منتجات تنظيف وترطيب وحماية، أبرزها Clarins.",
     tone: "linear-gradient(145deg, #1a7a6d, #0f4f48)",
+    cover: "assets/products/care/skincare-serum.jpg",
     details: "مناسب لمن يريد روتين بشرة بجانب العطر: منظفات، مرطبات، وعناية متخصصة.",
     examples: [
       "Clarins — منظفات ومرطبات",
@@ -977,6 +1139,7 @@ const categories = [
     filter: "beauty",
     blurb: "وجه، عيون، شفاه، ومناكير من ماركات معروفة.",
     tone: "linear-gradient(145deg, #8b3d4f, #5c2433)",
+    cover: "assets/products/beauty/makeup-flat.jpg",
     details: "الماركات في أواسيس تشمل Bourjois وClarins Make-up وMax Factor وRimmel وSeventeen.",
     examples: [
       "Bourjois — وجه، شفاه، عيون، مناكير",
@@ -990,6 +1153,7 @@ const categories = [
     filter: "gifts",
     blurb: "مجموعات جاهزة للهدايا: عطر مع لوشن أو جل أو حجم سفر.",
     tone: "linear-gradient(145deg, #b8860b, #7a5a12)",
+    cover: "assets/products/gifts/gift-set.jpg",
     details: "ابحث عن كلمة SET في الاسم. غالباً أوفر من شراء القطع منفصلة.",
     examples: [
       "VERSACE EROS EDP SET (عطر + جل + حجم صغير)",
@@ -1004,6 +1168,7 @@ const categories = [
     filter: "gifts",
     blurb: "مجموعات Clarins جاهزة كهدية أو لبداية روتين عناية.",
     tone: "linear-gradient(145deg, #2f6b5a, #1a433a)",
+    cover: "assets/products/care/clarins-style.jpg",
     details: "تجمع عدة منتجات عناية في عبوة واحدة — مثالية لمن يبدأ بالعناية الفاخرة.",
     examples: ["أطقم Clarins المتنوعة في قسم الهدايا والعناية"]
   },
@@ -1013,6 +1178,7 @@ const categories = [
     filter: "extra",
     blurb: "فئة ساعات Cross ضمن المتجر إلى جانب العطور والجمال.",
     tone: "linear-gradient(145deg, #3d4f5f, #1f2a33)",
+    cover: "assets/products/brands/watch.jpg",
     details: "خيار إكسسوار أنيق يمكن دمجه مع هدية عطر.",
     examples: ["ساعات Cross في قسم ساعات كروس"]
   },
@@ -1022,8 +1188,192 @@ const categories = [
     filter: "gifts",
     blurb: "عروض موسمية مناسبة للهدايا والتخرج.",
     tone: "linear-gradient(145deg, #0d5c5a, #c9a66b)",
+    cover: "assets/products/gifts/graduation.jpg",
     details: "راجع هذا القسم في المواسم المناسبة لعثور على باقات مخفّضة أو جاهزة للإهداء.",
     examples: ["عروض تخرج موسمية على عطور وأطقم"]
+  }
+];
+
+const products = [
+  {
+    id: "sauvage",
+    name: "SAUVAGE ELIXIR EDP 60ML",
+    brand: "DIOR",
+    cat: "perfume",
+    type: "Elixir",
+    img: "assets/products/perfumes/sauvage-style.jpg",
+    desc: "تركيز عالٍ وثبات قوي — من المنتجات الجديدة الظاهرة في أواسيس."
+  },
+  {
+    id: "valentino",
+    name: "VALENTINO DONNA BORN IN ROMA EDP 100ML",
+    brand: "VALENTINO",
+    cat: "perfume",
+    type: "EDP",
+    img: "assets/products/perfumes/valentino-style.jpg",
+    desc: "عطر نسائي شهير ضمن قسم VALENTINO في المتجر."
+  },
+  {
+    id: "tomford",
+    name: "TOM FORD — Tobacco Vanille / Oud Wood",
+    brand: "TOM FORD",
+    cat: "perfume",
+    type: "EDP",
+    img: "assets/products/perfumes/tom-ford-style.jpg",
+    desc: "روائح خشبية وشرقية فاخرة من مجموعة Tom Ford."
+  },
+  {
+    id: "amber",
+    name: "AMBER OUD WHITE EDITION 100ML",
+    brand: "AMBER OUD",
+    cat: "perfume",
+    type: "EDP",
+    img: "assets/products/perfumes/amber-oud.jpg",
+    desc: "اتجاه عودي/عنبري محبوب في المنطقة."
+  },
+  {
+    id: "fresh",
+    name: "CK ONE / عطور منعشة",
+    brand: "CALVIN KLEIN",
+    cat: "perfume",
+    type: "EDT",
+    img: "assets/products/perfumes/fresh-citrus.jpg",
+    desc: "مناسبة للنهار والاستخدام اليومي بتركيز أخف."
+  },
+  {
+    id: "floral",
+    name: "عطور زهرية نسائية",
+    brand: "CHLOE / LANCOME",
+    cat: "perfume",
+    type: "EDP",
+    img: "assets/products/perfumes/floral-bottle.jpg",
+    desc: "عائلة زهرية ناعمة — خيار ممتاز للمبتدئات."
+  },
+  {
+    id: "ysl",
+    name: "MYSLF MEN EDP 100ML",
+    brand: "YVES SAINT LAURENT",
+    cat: "perfume",
+    type: "EDP",
+    img: "assets/products/perfumes/ysl-style.jpg",
+    desc: "من المنتجات الجديدة المعروضة في الصفحة الرئيسية لأواسيس."
+  },
+  {
+    id: "guess",
+    name: "GUESS BELLA VITA PARADISO EDP 100ML",
+    brand: "GUESS",
+    cat: "perfume",
+    type: "EDP",
+    img: "assets/products/perfumes/guess-style.jpg",
+    desc: "عطر نسائي ظاهر ضمن المنتجات الجديدة."
+  },
+  {
+    id: "luxury",
+    name: "عطور فاخرة مسائية",
+    brand: "CREED / GUCCI",
+    cat: "perfume",
+    type: "EDP",
+    img: "assets/products/perfumes/luxury-dark.jpg",
+    desc: "للمناسبات والمساء — غالباً تركيز أعلى."
+  },
+  {
+    id: "serum",
+    name: "Clarins — سيروم وعناية مركّزة",
+    brand: "CLARINS",
+    cat: "care",
+    type: "عناية",
+    img: "assets/products/care/skincare-serum.jpg",
+    desc: "من أبرز منتجات العناية بالبشرة في أواسيس."
+  },
+  {
+    id: "moist",
+    name: "مرطبات يومية",
+    brand: "CLARINS",
+    cat: "care",
+    type: "عناية",
+    img: "assets/products/care/moisturizer.jpg",
+    desc: "ترطيب صباحي/مسائي حسب نوع البشرة."
+  },
+  {
+    id: "cleanse",
+    name: "منظفات البشرة",
+    brand: "CLARINS",
+    cat: "care",
+    type: "عناية",
+    img: "assets/products/care/cleanser.jpg",
+    desc: "خطوة أولى في روتين العناية قبل العطر."
+  },
+  {
+    id: "clarins-set",
+    name: "أطقم Clarins",
+    brand: "CLARINS",
+    cat: "gifts",
+    type: "SET",
+    img: "assets/products/care/clarins-style.jpg",
+    desc: "مجموعات جاهزة تجمع عدة منتجات عناية."
+  },
+  {
+    id: "lips",
+    name: "أحمر شفاه ومكياج الشفاه",
+    brand: "BOURJOIS / CLARINS",
+    cat: "beauty",
+    type: "ماكياج",
+    img: "assets/products/beauty/lipstick.jpg",
+    desc: "قسم الشفاه ضمن ماركات المكياج في أواسيس."
+  },
+  {
+    id: "eyes",
+    name: "مكياج العيون",
+    brand: "MAX FACTOR / SEVENTEEN",
+    cat: "beauty",
+    type: "ماكياج",
+    img: "assets/products/beauty/eyes.jpg",
+    desc: "ظلال وكحل وماسكارا من قسم العيون."
+  },
+  {
+    id: "makeup",
+    name: "أساسيات الوجه",
+    brand: "RIMMEL / BOURJOIS",
+    cat: "beauty",
+    type: "ماكياج",
+    img: "assets/products/beauty/makeup-flat.jpg",
+    desc: "أساس وبودرة وخدود ضمن قسم الماكياج."
+  },
+  {
+    id: "gift1",
+    name: "VERSACE EROS / أطقم هدايا",
+    brand: "VERSACE",
+    cat: "gifts",
+    type: "SET",
+    img: "assets/products/gifts/gift-set.jpg",
+    desc: "غالباً عطر + جل استحمام + حجم سفر."
+  },
+  {
+    id: "gift2",
+    name: "212 VIP ROSE SET",
+    brand: "CAROLINA HERRERA",
+    cat: "gifts",
+    type: "SET",
+    img: "assets/products/gifts/boxed-perfume.jpg",
+    desc: "مثال شائع: EDP + Body Lotion + 10ml."
+  },
+  {
+    id: "grad",
+    name: "عروض التخرج",
+    brand: "أواسيس",
+    cat: "gifts",
+    type: "عرض",
+    img: "assets/products/gifts/graduation.jpg",
+    desc: "باقات موسمية مناسبة للهدايا والتخرج."
+  },
+  {
+    id: "watch",
+    name: "ساعات كروس",
+    brand: "CROSS",
+    cat: "extra",
+    type: "ساعة",
+    img: "assets/products/brands/watch.jpg",
+    desc: "إكسسوار أنيق يمكن دمجه مع هدية عطر."
   }
 ];
 
@@ -1234,20 +1584,44 @@ function renderCatalog() {
     });
   });
 
-  const filtered = activeFilter === "all"
+  const filteredCats = activeFilter === "all"
     ? categories
     : categories.filter(c => c.filter === activeFilter);
 
-  document.getElementById("categoryGrid").innerHTML = filtered.map(c => `
-    <button type="button" class="category-tile" style="background:${c.tone}" data-cat="${c.id}">
-      <h3>${c.name}</h3>
-      <p>${c.blurb}</p>
-      <div class="meta">اضغط للتفاصيل ←</div>
+  document.getElementById("categoryGrid").innerHTML = filteredCats.map(c => `
+    <button type="button" class="category-tile" data-cat="${c.id}">
+      <img class="tile-img" src="${c.cover}" alt="${c.name}" loading="lazy">
+      <div class="tile-shade"></div>
+      <div class="tile-body">
+        <h3>${c.name}</h3>
+        <p>${c.blurb}</p>
+        <div class="meta">اضغط للتفاصيل ←</div>
+      </div>
     </button>
   `).join("");
 
   document.querySelectorAll("[data-cat]").forEach(btn => {
     btn.addEventListener("click", () => openCategory(btn.dataset.cat));
+  });
+
+  const filteredProducts = activeFilter === "all"
+    ? products
+    : products.filter(p => p.cat === activeFilter);
+
+  document.getElementById("productGrid").innerHTML = filteredProducts.map(p => `
+    <button type="button" class="product-card" data-product="${p.id}">
+      <div class="thumb"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
+      <div class="info">
+        <div class="brand-line">${p.brand}</div>
+        <h4>${p.name}</h4>
+        <p>${p.desc}</p>
+        <span class="badge-type">${p.type}</span>
+      </div>
+    </button>
+  `).join("");
+
+  document.querySelectorAll("[data-product]").forEach(btn => {
+    btn.addEventListener("click", () => openProduct(btn.dataset.product));
   });
 
   document.getElementById("brandTags").innerHTML = brands.map(b => `<span>${b}</span>`).join("");
@@ -1256,15 +1630,59 @@ function renderCatalog() {
 function openCategory(id) {
   const c = categories.find(x => x.id === id);
   if (!c) return;
+  const related = products.filter(p => p.cat === c.filter);
   const drawer = document.getElementById("detailDrawer");
   drawer.classList.add("open");
   drawer.innerHTML = `
     <h3>${c.name}</h3>
     <p>${c.details}</p>
     <ul class="example-list">${c.examples.map(e => `<li>${e}</li>`).join("")}</ul>
+    ${related.length ? `
+      <h4 style="margin-top:1rem;color:var(--teal-deep)">صور من هذه الفئة</h4>
+      <div class="product-grid" style="margin-top:0.75rem">
+        ${related.map(p => `
+          <button type="button" class="product-card" data-product="${p.id}">
+            <div class="thumb"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
+            <div class="info">
+              <div class="brand-line">${p.brand}</div>
+              <h4>${p.name}</h4>
+              <span class="badge-type">${p.type}</span>
+            </div>
+          </button>
+        `).join("")}
+      </div>` : ""}
   `;
+  drawer.querySelectorAll("[data-product]").forEach(btn => {
+    btn.addEventListener("click", () => openProduct(btn.dataset.product));
+  });
   drawer.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
+
+function openProduct(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  const lb = document.getElementById("lightbox");
+  document.getElementById("lightboxCard").innerHTML = `
+    <img src="${p.img}" alt="${p.name}">
+    <div class="lb-body">
+      <div class="brand-line" style="font-weight:700;color:var(--gold);margin-bottom:0.25rem">${p.brand}</div>
+      <h3>${p.name}</h3>
+      <p>${p.desc}</p>
+      <span class="badge-type">${p.type}</span>
+      <button type="button" class="btn btn-teal lightbox-close" id="closeLightbox">إغلاق</button>
+    </div>
+  `;
+  lb.classList.add("open");
+  document.getElementById("closeLightbox").addEventListener("click", closeLightbox);
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").classList.remove("open");
+}
+
+document.getElementById("lightbox").addEventListener("click", (e) => {
+  if (e.target.id === "lightbox") closeLightbox();
+});
 
 function shuffledQuiz() {
   return [...quizBank].sort(() => Math.random() - 0.5);
