@@ -187,7 +187,14 @@ export function computePayroll(
     ...empAtt.filter((a) => a.checkIn).map((a) => a.date),
     ...leaveDateSet,
   ]);
-  const absentDays = workDates.filter((d) => !presentOrLeave.has(d) && d <= todayISO()).length;
+  // Only count absence on days the company actually tracked attendance,
+  // so incomplete historical months are not mass-deducted.
+  const trackedDates = new Set(
+    attendance.filter((a) => a.date.startsWith(month) && a.checkIn).map((a) => a.date),
+  );
+  const absentDays = workDates.filter(
+    (d) => trackedDates.has(d) && !presentOrLeave.has(d) && d <= todayISO(),
+  ).length;
 
   const rateH = hourlyRate(employee);
   const rateD = dailyRate(employee, month);
