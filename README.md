@@ -1,6 +1,9 @@
 # نظام الحضور والانصراف وحساب الرواتب
 
-تم إنشاء التطبيق داخل مجلد [`attendance-app`](./attendance-app).
+## الرابط العام المباشر
+**https://mahmoudalhousen86-del.github.io/quran-tadabbur/attendance/**
+
+كود المصدر في [`attendance-app`](./attendance-app) والنسخة المنشورة في [`attendance`](./attendance).
 
 ```bash
 cd attendance-app
