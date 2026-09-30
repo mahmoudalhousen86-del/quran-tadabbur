@@ -2,11 +2,10 @@
 
 تطبيق شخصي لتسجيل حضورك وانصرافك وحساب راتبك.
 
-## الرابط العام المباشر
-**https://mahmoudalhousen86-del.github.io/quran-tadabbur/attendance/**
+## الرابط العام المباشر (النسخة الجديدة)
+**https://mahmoudalhousen86-del.github.io/quran-tadabbur/hadouri/**
 
-- كود المصدر: [`attendance-app`](./attendance-app)
-- النسخة المنشورة: [`attendance`](./attendance)
+> إذا فتح معك الرابط القديم `/attendance/` سيحوّلك تلقائياً للنسخة الجديدة.
 
 ```bash
 cd attendance-app
