@@ -1,14 +1,14 @@
-# نظام الحضور والانصراف وحساب الرواتب
+# حضوري وراتبي
 
-## الرابط العام المباشر
-**https://mahmoudalhousen86-del.github.io/quran-tadabbur/attendance/**
+تطبيق شخصي لتسجيل حضورك وانصرافك وحساب راتبك.
 
-كود المصدر في [`attendance-app`](./attendance-app) والنسخة المنشورة في [`attendance`](./attendance).
+## الرابط العام المباشر (النسخة الجديدة)
+**https://mahmoudalhousen86-del.github.io/quran-tadabbur/hadouri/**
+
+> إذا فتح معك الرابط القديم `/attendance/` سيحوّلك تلقائياً للنسخة الجديدة.
 
 ```bash
 cd attendance-app
 npm install
 npm run dev
 ```
-
-راجع [README التطبيق](./attendance-app/README.md) للتفاصيل الكاملة.

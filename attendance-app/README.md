@@ -3,7 +3,7 @@
 تطبيق ويب عربي (RTL) لإدارة حضور الموظفين وحساب الرواتب بشكل كامل.
 
 ## الرابط العام
-**https://mahmoudalhousen86-del.github.io/quran-tadabbur/attendance/**
+**https://mahmoudalhousen86-del.github.io/quran-tadabbur/hadouri/**
 
 ## المميزات
 

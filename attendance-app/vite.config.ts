@@ -4,6 +4,6 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // GitHub Pages: https://mahmoudalhousen86-del.github.io/quran-tadabbur/attendance/
-  base: '/quran-tadabbur/attendance/',
+  // GitHub Pages: https://mahmoudalhousen86-del.github.io/quran-tadabbur/hadouri/
+  base: '/quran-tadabbur/hadouri/',
 })
