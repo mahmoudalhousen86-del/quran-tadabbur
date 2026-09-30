@@ -1,20 +1,17 @@
 import type { ReactNode } from 'react';
 
-interface ModalProps {
+export function Modal({
+  title,
+  onClose,
+  children,
+}: {
   title: string;
   onClose: () => void;
   children: ReactNode;
-  wide?: boolean;
-}
-
-export function Modal({ title, onClose, children, wide }: ModalProps) {
+}) {
   return (
     <div className="modal-backdrop" onClick={onClose}>
-      <div
-        className="modal"
-        style={wide ? { width: 'min(960px, 100%)' } : undefined}
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className="modal" onClick={(e) => e.stopPropagation()}>
         <h3>{title}</h3>
         {children}
       </div>
@@ -29,12 +26,6 @@ export function StatusBadge({ status }: { status: string }) {
     'انصراف مبكر': 'badge-warn',
     ناقص: 'badge-info',
     غائب: 'badge-danger',
-    نشط: 'badge-ok',
-    موقوف: 'badge-warn',
-    منتهي: 'badge-muted',
-    معلق: 'badge-warn',
-    موافق: 'badge-ok',
-    مرفوض: 'badge-danger',
   };
   return <span className={`badge ${map[status] || 'badge-muted'}`}>{status}</span>;
 }

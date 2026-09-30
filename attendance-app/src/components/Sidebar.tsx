@@ -1,42 +1,38 @@
 import {
-  LayoutDashboard,
-  Users,
+  Home,
   Clock3,
   CalendarOff,
   Wallet,
-  BarChart3,
   Settings,
   Menu,
   X,
 } from 'lucide-react';
 import type { AppView } from '../types';
 
-const items: { id: AppView; label: string; icon: typeof LayoutDashboard }[] = [
-  { id: 'dashboard', label: 'لوحة التحكم', icon: LayoutDashboard },
-  { id: 'employees', label: 'الموظفون', icon: Users },
-  { id: 'attendance', label: 'الحضور والانصراف', icon: Clock3 },
-  { id: 'leaves', label: 'الإجازات', icon: CalendarOff },
-  { id: 'payroll', label: 'الرواتب', icon: Wallet },
-  { id: 'reports', label: 'التقارير', icon: BarChart3 },
-  { id: 'settings', label: 'الإعدادات', icon: Settings },
+const items: { id: AppView; label: string; icon: typeof Home }[] = [
+  { id: 'home', label: 'الرئيسية', icon: Home },
+  { id: 'attendance', label: 'سجلي', icon: Clock3 },
+  { id: 'leaves', label: 'إجازاتي', icon: CalendarOff },
+  { id: 'salary', label: 'راتبي', icon: Wallet },
+  { id: 'settings', label: 'ملفي', icon: Settings },
 ];
 
 interface Props {
   view: AppView;
   onNavigate: (v: AppView) => void;
-  companyName: string;
+  name: string;
   open: boolean;
   onClose: () => void;
 }
 
-export function Sidebar({ view, onNavigate, companyName, open, onClose }: Props) {
+export function Sidebar({ view, onNavigate, name, open, onClose }: Props) {
   return (
     <aside className={`sidebar ${open ? 'open' : ''}`}>
       <div className="brand">
         <div className="brand-mark">ح</div>
         <div>
-          <h1>نظام الحضور والرواتب</h1>
-          <p>{companyName}</p>
+          <h1>حضوري وراتبي</h1>
+          <p>{name}</p>
         </div>
       </div>
       <nav className="nav">
@@ -55,7 +51,7 @@ export function Sidebar({ view, onNavigate, companyName, open, onClose }: Props)
         ))}
       </nav>
       <div className="chip" style={{ justifyContent: 'center' }}>
-        البيانات محفوظة محلياً على جهازك
+        تطبيق شخصي — بياناتك على جهازك فقط
       </div>
     </aside>
   );

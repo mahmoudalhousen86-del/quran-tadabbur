@@ -1,50 +1,33 @@
-export type Department =
-  | 'الإدارة'
-  | 'الموارد البشرية'
-  | 'المالية'
-  | 'المبيعات'
-  | 'التقنية'
-  | 'العمليات'
-  | 'خدمة العملاء';
-
-export type EmploymentStatus = 'نشط' | 'موقوف' | 'منتهي';
-
 export type LeaveType = 'اعتيادي' | 'مرضي' | 'طارئ' | 'بدون راتب';
 
-export type LeaveStatus = 'معلق' | 'موافق' | 'مرفوض';
-
 export interface WorkSchedule {
-  startTime: string; // HH:mm
+  startTime: string;
   endTime: string;
-  workDays: number[]; // 0=Sun ... 6=Sat (JS getDay)
+  workDays: number[]; // 0=Sun ... 6=Sat
   dailyHours: number;
 }
 
-export interface Employee {
-  id: string;
-  code: string;
+export interface Profile {
   name: string;
-  nationalId: string;
-  phone: string;
-  email: string;
-  department: Department;
   jobTitle: string;
-  hireDate: string; // yyyy-MM-dd
-  status: EmploymentStatus;
+  workplace: string;
   baseSalary: number;
   housingAllowance: number;
   transportAllowance: number;
   otherAllowance: number;
-  overtimeRate: number; // multiplier of hourly rate, e.g. 1.5
+  overtimeRate: number;
   schedule: WorkSchedule;
-  notes?: string;
+  currency: string;
+  lateGraceMinutes: number;
+  lateDeductionPerMinute: number;
+  absenceDeductionDays: boolean;
+  unpaidLeaveDeduct: boolean;
 }
 
 export interface AttendanceRecord {
   id: string;
-  employeeId: string;
-  date: string; // yyyy-MM-dd
-  checkIn?: string; // HH:mm
+  date: string;
+  checkIn?: string;
   checkOut?: string;
   lateMinutes: number;
   earlyLeaveMinutes: number;
@@ -54,45 +37,24 @@ export interface AttendanceRecord {
   note?: string;
 }
 
-export interface LeaveRequest {
+export interface LeaveDay {
   id: string;
-  employeeId: string;
   type: LeaveType;
   fromDate: string;
   toDate: string;
   days: number;
   reason: string;
-  status: LeaveStatus;
-  createdAt: string;
 }
 
 export interface SalaryAdjustment {
   id: string;
-  employeeId: string;
-  month: string; // yyyy-MM
+  month: string;
   type: 'مكافأة' | 'سلفة' | 'خصم' | 'بدل إضافي';
   amount: number;
   description: string;
 }
 
-export interface CompanySettings {
-  companyName: string;
-  currency: string;
-  lateGraceMinutes: number;
-  lateDeductionPerMinute: number; // or use hourly
-  absenceDeductionDays: boolean; // deduct pro-rata day
-  unpaidLeaveDeduct: boolean;
-  defaultWorkDays: number[];
-  defaultStartTime: string;
-  defaultEndTime: string;
-  defaultDailyHours: number;
-  weekends: number[];
-}
-
-export interface PayrollLine {
-  employeeId: string;
-  employeeName: string;
-  department: string;
+export interface MonthSalary {
   month: string;
   baseSalary: number;
   housingAllowance: number;
@@ -117,11 +79,4 @@ export interface PayrollLine {
   workedHours: number;
 }
 
-export type AppView =
-  | 'dashboard'
-  | 'employees'
-  | 'attendance'
-  | 'leaves'
-  | 'payroll'
-  | 'reports'
-  | 'settings';
+export type AppView = 'home' | 'attendance' | 'leaves' | 'salary' | 'settings';

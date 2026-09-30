@@ -1,43 +1,33 @@
 import { useState } from 'react';
 import { useAppStore } from './hooks/useAppStore';
 import { Sidebar, MobileToggle } from './components/Sidebar';
-import { DashboardView } from './components/DashboardView';
-import { EmployeesView } from './components/EmployeesView';
+import { HomeView } from './components/HomeView';
 import { AttendanceView } from './components/AttendanceView';
 import { LeavesView } from './components/LeavesView';
-import { PayrollView } from './components/PayrollView';
-import { ReportsView } from './components/ReportsView';
+import { SalaryView } from './components/SalaryView';
 import { SettingsView } from './components/SettingsView';
 import type { AppView } from './types';
 
 const titles: Record<AppView, { title: string; sub: string }> = {
-  dashboard: {
-    title: 'لوحة التحكم',
-    sub: 'نظرة يومية على الحضور والقوى العاملة',
-  },
-  employees: {
-    title: 'إدارة الموظفين',
-    sub: 'بيانات الموظفين والرواتب والدوام',
+  home: {
+    title: 'الرئيسية',
+    sub: 'سجل حضورك وانصرافك بضغطة',
   },
   attendance: {
-    title: 'الحضور والانصراف',
-    sub: 'تسجيل ومتابعة أوقات الدخول والخروج',
+    title: 'سجلي',
+    sub: 'كل ايام حضوري وانصرافي',
   },
   leaves: {
-    title: 'الإجازات',
-    sub: 'طلبات الإجازة والموافقات',
+    title: 'اجازاتي',
+    sub: 'ايام اجازتي خلال الشهر',
   },
-  payroll: {
-    title: 'حساب الرواتب',
-    sub: 'مسير شهري كامل مع الخصومات والمكافآت',
-  },
-  reports: {
-    title: 'التقارير',
-    sub: 'تحليلات الحضور وتوزيع الرواتب',
+  salary: {
+    title: 'راتبي',
+    sub: 'حساب راتبي لهذا الشهر',
   },
   settings: {
-    title: 'الإعدادات',
-    sub: 'سياسات الدوام والخصومات',
+    title: 'ملفي',
+    sub: 'اسمي وراتبي ودوامي',
   },
 };
 
@@ -52,7 +42,7 @@ export default function App() {
       <Sidebar
         view={store.view}
         onNavigate={store.setView}
-        companyName={store.settings.companyName}
+        name={store.profile.name}
         open={menuOpen}
         onClose={() => setMenuOpen(false)}
       />
@@ -67,17 +57,15 @@ export default function App() {
               type="month"
               value={store.selectedMonth}
               onChange={(e) => store.setSelectedMonth(e.target.value)}
-              title="شهر الرواتب"
+              title="الشهر"
             />
           </div>
         </div>
 
-        {store.view === 'dashboard' && <DashboardView store={store} />}
-        {store.view === 'employees' && <EmployeesView store={store} />}
+        {store.view === 'home' && <HomeView store={store} />}
         {store.view === 'attendance' && <AttendanceView store={store} />}
         {store.view === 'leaves' && <LeavesView store={store} />}
-        {store.view === 'payroll' && <PayrollView store={store} />}
-        {store.view === 'reports' && <ReportsView store={store} />}
+        {store.view === 'salary' && <SalaryView store={store} />}
         {store.view === 'settings' && <SettingsView store={store} />}
       </main>
 

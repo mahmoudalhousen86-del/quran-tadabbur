@@ -1,44 +1,35 @@
 import { useMemo, useState } from 'react';
-import { LogIn, LogOut, Pencil, Plus, Trash2 } from 'lucide-react';
+import { Pencil, Plus, Trash2 } from 'lucide-react';
 import type { AppStore } from '../hooks/useAppStore';
 import { formatMinutes, todayISO, uid } from '../lib/payroll';
 import type { AttendanceRecord } from '../types';
 import { Field, Modal, StatusBadge } from './ui';
 
 export function AttendanceView({ store }: { store: AppStore }) {
-  const [date, setDate] = useState(todayISO());
+  const [month, setMonth] = useState(store.selectedMonth);
   const [editing, setEditing] = useState<AttendanceRecord | null>(null);
 
   const rows = useMemo(
     () =>
-      store.attendance
-        .filter((a) => a.date === date)
-        .map((a) => ({
-          ...a,
-          employee: store.employees.find((e) => e.id === a.employeeId),
-        }))
-        .sort((a, b) => (a.employee?.name || '').localeCompare(b.employee?.name || '', 'ar')),
-    [store.attendance, store.employees, date],
-  );
-
-  const missing = store.activeEmployees.filter(
-    (e) => !rows.some((r) => r.employeeId === e.id),
+      [...store.attendance]
+        .filter((a) => a.date.startsWith(month))
+        .sort((a, b) => b.date.localeCompare(a.date)),
+    [store.attendance, month],
   );
 
   return (
     <>
       <div className="panel">
         <div className="panel-head">
-          <h3>سجل الحضور ليوم {date}</h3>
+          <h3>سجل حضوري</h3>
           <div className="toolbar">
-            <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+            <input type="month" value={month} onChange={(e) => setMonth(e.target.value)} />
             <button
               className="btn btn-primary"
               onClick={() =>
                 setEditing({
                   id: uid('att'),
-                  employeeId: store.activeEmployees[0]?.id || '',
-                  date,
+                  date: todayISO(),
                   checkIn: '09:00',
                   checkOut: '17:00',
                   lateMinutes: 0,
@@ -49,73 +40,37 @@ export function AttendanceView({ store }: { store: AppStore }) {
                 })
               }
             >
-              <Plus size={16} /> سجل يدوي
+              <Plus size={16} /> إضافة يوم
             </button>
           </div>
         </div>
-
-        {date === todayISO() && missing.length > 0 && (
-          <div style={{ marginBottom: '1rem' }}>
-            <div className="panel-head">
-              <h3>تسجيل حضور سريع لمن لم يسجلوا</h3>
-            </div>
-            <div className="quick-list">
-              {missing.map((emp) => (
-                <div className="quick-item" key={emp.id}>
-                  <div>
-                    <strong>{emp.name}</strong>
-                    <span>{emp.department}</span>
-                  </div>
-                  <button className="btn btn-primary btn-sm" onClick={() => store.checkIn(emp.id)}>
-                    <LogIn size={14} /> حضور الآن
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
         <div className="table-wrap">
           <table>
             <thead>
               <tr>
-                <th>الموظف</th>
+                <th>التاريخ</th>
                 <th>حضور</th>
                 <th>انصراف</th>
-                <th>ساعات العمل</th>
+                <th>العمل</th>
                 <th>تأخير</th>
                 <th>إضافي</th>
                 <th>الحالة</th>
-                <th>إجراءات</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               {rows.length === 0 ? (
                 <tr>
                   <td colSpan={8} className="empty">
-                    لا توجد سجلات لهذا اليوم
+                    لا توجد سجلات لهذا الشهر
                   </td>
                 </tr>
               ) : (
                 rows.map((r) => (
                   <tr key={r.id}>
-                    <td>
-                      <strong>{r.employee?.name || '—'}</strong>
-                    </td>
+                    <td>{r.date}</td>
                     <td>{r.checkIn || '—'}</td>
-                    <td>
-                      {r.checkOut ||
-                        (date === todayISO() && r.checkIn ? (
-                          <button
-                            className="btn btn-accent btn-sm"
-                            onClick={() => store.checkOut(r.employeeId)}
-                          >
-                            <LogOut size={14} /> انصراف
-                          </button>
-                        ) : (
-                          '—'
-                        ))}
-                    </td>
+                    <td>{r.checkOut || '—'}</td>
                     <td>{formatMinutes(r.workedMinutes)}</td>
                     <td>{formatMinutes(r.lateMinutes)}</td>
                     <td>{formatMinutes(r.overtimeMinutes)}</td>
@@ -144,20 +99,8 @@ export function AttendanceView({ store }: { store: AppStore }) {
       </div>
 
       {editing && (
-        <Modal title="سجل حضور" onClose={() => setEditing(null)}>
+        <Modal title="سجل يوم" onClose={() => setEditing(null)}>
           <div className="form-grid">
-            <Field label="الموظف" full>
-              <select
-                value={editing.employeeId}
-                onChange={(e) => setEditing({ ...editing, employeeId: e.target.value })}
-              >
-                {store.employees.map((emp) => (
-                  <option key={emp.id} value={emp.id}>
-                    {emp.name}
-                  </option>
-                ))}
-              </select>
-            </Field>
             <Field label="التاريخ">
               <input
                 type="date"

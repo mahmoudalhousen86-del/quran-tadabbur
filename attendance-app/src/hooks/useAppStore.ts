@@ -2,15 +2,13 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import type {
   AppView,
   AttendanceRecord,
-  CompanySettings,
-  Employee,
-  LeaveRequest,
-  PayrollLine,
+  LeaveDay,
+  Profile,
   SalaryAdjustment,
 } from '../types';
 import {
   calcAttendanceMetrics,
-  computePayroll,
+  computeMonthSalary,
   currentMonth,
   leaveDaysInRange,
   nowTime,
@@ -20,10 +18,8 @@ import {
 import { loadState, resetState, saveState, type AppState } from '../lib/storage';
 
 export function useAppStore() {
-  const [state, setState] = useState<AppState>(() =>
-    typeof window !== 'undefined' ? loadState() : loadState(),
-  );
-  const [view, setView] = useState<AppView>('dashboard');
+  const [state, setState] = useState<AppState>(() => loadState());
+  const [view, setView] = useState<AppView>('home');
   const [selectedMonth, setSelectedMonth] = useState(currentMonth());
   const [flash, setFlash] = useState<string | null>(null);
 
@@ -39,53 +35,44 @@ export function useAppStore() {
 
   const notify = useCallback((msg: string) => setFlash(msg), []);
 
-  const activeEmployees = useMemo(
-    () => state.employees.filter((e) => e.status === 'نشط'),
-    [state.employees],
+  const todayRecord = useMemo(
+    () => state.attendance.find((a) => a.date === todayISO()),
+    [state.attendance],
   );
 
-  const upsertEmployee = useCallback(
-    (emp: Employee) => {
-      setState((s) => {
-        const exists = s.employees.some((e) => e.id === emp.id);
-        return {
-          ...s,
-          employees: exists
-            ? s.employees.map((e) => (e.id === emp.id ? emp : e))
-            : [...s.employees, emp],
-        };
-      });
-      notify(emp.id ? 'تم حفظ بيانات الموظف' : 'تمت إضافة الموظف');
-    },
-    [notify],
+  const monthSalary = useMemo(
+    () =>
+      computeMonthSalary(
+        state.profile,
+        selectedMonth,
+        state.attendance,
+        state.leaves,
+        state.adjustments,
+      ),
+    [state.profile, state.attendance, state.leaves, state.adjustments, selectedMonth],
   );
 
-  const deleteEmployee = useCallback(
-    (id: string) => {
-      setState((s) => ({
-        ...s,
-        employees: s.employees.filter((e) => e.id !== id),
-        attendance: s.attendance.filter((a) => a.employeeId !== id),
-        leaves: s.leaves.filter((l) => l.employeeId !== id),
-        adjustments: s.adjustments.filter((a) => a.employeeId !== id),
-      }));
-      notify('تم حذف الموظف');
+  const updateProfile = useCallback(
+    (profile: Profile) => {
+      setState((s) => ({ ...s, profile }));
+      notify('تم حفظ ملفك الشخصي');
     },
     [notify],
   );
 
   const checkIn = useCallback(
-    (employeeId: string, time?: string) => {
-      const emp = state.employees.find((e) => e.id === employeeId);
-      if (!emp) return;
+    (time?: string) => {
       const date = todayISO();
       const checkInTime = time || nowTime();
       setState((s) => {
-        const existing = s.attendance.find((a) => a.employeeId === employeeId && a.date === date);
-        if (existing?.checkIn) {
-          return s;
-        }
-        const metrics = calcAttendanceMetrics(emp, date, checkInTime, existing?.checkOut, s.settings);
+        const existing = s.attendance.find((a) => a.date === date);
+        if (existing?.checkIn) return s;
+        const metrics = calcAttendanceMetrics(
+          s.profile.schedule,
+          checkInTime,
+          existing?.checkOut,
+          s.profile.lateGraceMinutes,
+        );
         if (existing) {
           return {
             ...s,
@@ -96,28 +83,30 @@ export function useAppStore() {
         }
         const rec: AttendanceRecord = {
           id: uid('att'),
-          employeeId,
           date,
           checkIn: checkInTime,
           ...metrics,
         };
         return { ...s, attendance: [...s.attendance, rec] };
       });
-      notify(`تم تسجيل حضور ${emp.name}`);
+      notify('تم تسجيل حضورك ✓');
     },
-    [state.employees, notify],
+    [notify],
   );
 
   const checkOut = useCallback(
-    (employeeId: string, time?: string) => {
-      const emp = state.employees.find((e) => e.id === employeeId);
-      if (!emp) return;
+    (time?: string) => {
       const date = todayISO();
       const checkOutTime = time || nowTime();
       setState((s) => {
-        const existing = s.attendance.find((a) => a.employeeId === employeeId && a.date === date);
+        const existing = s.attendance.find((a) => a.date === date);
         if (!existing?.checkIn) return s;
-        const metrics = calcAttendanceMetrics(emp, date, existing.checkIn, checkOutTime, s.settings);
+        const metrics = calcAttendanceMetrics(
+          s.profile.schedule,
+          existing.checkIn,
+          checkOutTime,
+          s.profile.lateGraceMinutes,
+        );
         return {
           ...s,
           attendance: s.attendance.map((a) =>
@@ -125,24 +114,21 @@ export function useAppStore() {
           ),
         };
       });
-      notify(`تم تسجيل انصراف ${emp.name}`);
+      notify('تم تسجيل انصرافك ✓');
     },
-    [state.employees, notify],
+    [notify],
   );
 
   const saveAttendance = useCallback(
     (rec: AttendanceRecord) => {
-      const emp = state.employees.find((e) => e.id === rec.employeeId);
-      if (!emp) return;
-      const metrics = calcAttendanceMetrics(
-        emp,
-        rec.date,
-        rec.checkIn,
-        rec.checkOut,
-        state.settings,
-      );
-      const full = { ...rec, ...metrics };
       setState((s) => {
+        const metrics = calcAttendanceMetrics(
+          s.profile.schedule,
+          rec.checkIn,
+          rec.checkOut,
+          s.profile.lateGraceMinutes,
+        );
+        const full = { ...rec, ...metrics };
         const exists = s.attendance.some((a) => a.id === full.id);
         return {
           ...s,
@@ -151,9 +137,9 @@ export function useAppStore() {
             : [...s.attendance, full],
         };
       });
-      notify('تم حفظ سجل الحضور');
+      notify('تم حفظ السجل');
     },
-    [state.employees, state.settings, notify],
+    [notify],
   );
 
   const deleteAttendance = useCallback(
@@ -165,32 +151,27 @@ export function useAppStore() {
   );
 
   const saveLeave = useCallback(
-    (leave: Omit<LeaveRequest, 'days' | 'createdAt'> & { days?: number; createdAt?: string }) => {
-      const emp = state.employees.find((e) => e.id === leave.employeeId);
-      const days =
-        leave.days ??
-        leaveDaysInRange(leave.fromDate, leave.toDate, emp?.schedule);
-      const full: LeaveRequest = {
-        ...leave,
-        days,
-        createdAt: leave.createdAt || todayISO(),
-      };
+    (leave: Omit<LeaveDay, 'days'> & { days?: number }) => {
       setState((s) => {
+        const full: LeaveDay = {
+          ...leave,
+          days: leave.days ?? leaveDaysInRange(leave.fromDate, leave.toDate, s.profile.schedule),
+        };
         const exists = s.leaves.some((l) => l.id === full.id);
         return {
           ...s,
           leaves: exists ? s.leaves.map((l) => (l.id === full.id ? full : l)) : [...s.leaves, full],
         };
       });
-      notify('تم حفظ طلب الإجازة');
+      notify('تم حفظ الإجازة');
     },
-    [state.employees, notify],
+    [notify],
   );
 
   const deleteLeave = useCallback(
     (id: string) => {
       setState((s) => ({ ...s, leaves: s.leaves.filter((l) => l.id !== id) }));
-      notify('تم حذف طلب الإجازة');
+      notify('تم حذف الإجازة');
     },
     [notify],
   );
@@ -206,7 +187,7 @@ export function useAppStore() {
             : [...s.adjustments, adj],
         };
       });
-      notify('تم حفظ التعديل على الراتب');
+      notify('تم حفظ التعديل');
     },
     [notify],
   );
@@ -219,39 +200,9 @@ export function useAppStore() {
     [notify],
   );
 
-  const updateSettings = useCallback(
-    (settings: CompanySettings) => {
-      setState((s) => ({ ...s, settings }));
-      notify('تم حفظ الإعدادات');
-    },
-    [notify],
-  );
-
-  const payroll: PayrollLine[] = useMemo(
-    () =>
-      activeEmployees.map((emp) =>
-        computePayroll(
-          emp,
-          selectedMonth,
-          state.attendance,
-          state.leaves,
-          state.adjustments,
-          state.settings,
-        ),
-      ),
-    [
-      activeEmployees,
-      selectedMonth,
-      state.attendance,
-      state.leaves,
-      state.adjustments,
-      state.settings,
-    ],
-  );
-
   const reset = useCallback(() => {
     setState(resetState());
-    notify('تمت إعادة تعيين البيانات التجريبية');
+    notify('تمت إعادة التعيين');
   }, [notify]);
 
   return {
@@ -261,10 +212,9 @@ export function useAppStore() {
     selectedMonth,
     setSelectedMonth,
     flash,
-    activeEmployees,
-    payroll,
-    upsertEmployee,
-    deleteEmployee,
+    todayRecord,
+    monthSalary,
+    updateProfile,
     checkIn,
     checkOut,
     saveAttendance,
@@ -273,7 +223,6 @@ export function useAppStore() {
     deleteLeave,
     saveAdjustment,
     deleteAdjustment,
-    updateSettings,
     reset,
   };
 }

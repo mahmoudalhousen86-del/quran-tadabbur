@@ -1,10 +1,15 @@
-import { format, parseISO, differenceInCalendarDays, eachDayOfInterval, getDay, isValid } from 'date-fns';
+import {
+  format,
+  parseISO,
+  eachDayOfInterval,
+  getDay,
+  isValid,
+} from 'date-fns';
 import type {
   AttendanceRecord,
-  CompanySettings,
-  Employee,
-  LeaveRequest,
-  PayrollLine,
+  LeaveDay,
+  MonthSalary,
+  Profile,
   SalaryAdjustment,
   WorkSchedule,
 } from '../types';
@@ -37,12 +42,6 @@ export function parseTimeToMinutes(time: string): number {
   return h * 60 + m;
 }
 
-export function minutesToTime(total: number): string {
-  const h = Math.floor(total / 60) % 24;
-  const m = total % 60;
-  return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
-}
-
 export function nowTime(): string {
   return format(new Date(), 'HH:mm');
 }
@@ -60,11 +59,7 @@ export function isWorkDay(date: string, schedule: WorkSchedule): boolean {
   return schedule.workDays.includes(getDay(d));
 }
 
-export function leaveDaysInRange(
-  fromDate: string,
-  toDate: string,
-  schedule?: WorkSchedule,
-): number {
+export function leaveDaysInRange(fromDate: string, toDate: string, schedule?: WorkSchedule): number {
   const from = parseISO(fromDate);
   const to = parseISO(toDate);
   if (!isValid(from) || !isValid(to) || to < from) return 0;
@@ -74,16 +69,14 @@ export function leaveDaysInRange(
 }
 
 export function calcAttendanceMetrics(
-  employee: Employee,
-  _date: string,
+  schedule: WorkSchedule,
   checkIn: string | undefined,
   checkOut: string | undefined,
-  settings: CompanySettings,
+  graceMinutes: number,
 ): Pick<
   AttendanceRecord,
   'lateMinutes' | 'earlyLeaveMinutes' | 'overtimeMinutes' | 'workedMinutes' | 'status'
 > {
-  const sched = employee.schedule;
   if (!checkIn) {
     return {
       lateMinutes: 0,
@@ -94,11 +87,10 @@ export function calcAttendanceMetrics(
     };
   }
 
-  const start = parseTimeToMinutes(sched.startTime);
-  const end = parseTimeToMinutes(sched.endTime);
+  const start = parseTimeToMinutes(schedule.startTime);
+  const end = parseTimeToMinutes(schedule.endTime);
   const inM = parseTimeToMinutes(checkIn);
-  const lateRaw = Math.max(0, inM - start - settings.lateGraceMinutes);
-  const lateMinutes = lateRaw;
+  const lateMinutes = Math.max(0, inM - start - graceMinutes);
 
   let earlyLeaveMinutes = 0;
   let overtimeMinutes = 0;
@@ -109,11 +101,9 @@ export function calcAttendanceMetrics(
     const outM = parseTimeToMinutes(checkOut);
     workedMinutes = Math.max(0, outM - inM);
     earlyLeaveMinutes = Math.max(0, end - outM);
-    const expected = sched.dailyHours * 60;
+    const expected = schedule.dailyHours * 60;
     overtimeMinutes = Math.max(0, workedMinutes - expected);
-    if (!checkOut) status = 'ناقص';
-    else if (earlyLeaveMinutes > 0 && lateMinutes > 0) status = 'متأخر';
-    else if (earlyLeaveMinutes > 0) status = 'انصراف مبكر';
+    if (earlyLeaveMinutes > 0) status = 'انصراف مبكر';
     else if (lateMinutes > 0) status = 'متأخر';
     else status = 'حاضر';
   } else {
@@ -123,37 +113,35 @@ export function calcAttendanceMetrics(
   return { lateMinutes, earlyLeaveMinutes, overtimeMinutes, workedMinutes, status };
 }
 
-export function hourlyRate(employee: Employee): number {
-  const monthlyHours = employee.schedule.dailyHours * employee.schedule.workDays.length * 4.33;
-  return employee.baseSalary / Math.max(monthlyHours, 1);
+function round2(n: number): number {
+  return Math.round(n * 100) / 100;
 }
 
-export function dailyRate(employee: Employee, month: string): number {
-  const days = monthDays(month).filter((d) => isWorkDay(d, employee.schedule));
-  return employee.baseSalary / Math.max(days.length, 1);
+export function hourlyRate(profile: Profile): number {
+  const monthlyHours = profile.schedule.dailyHours * profile.schedule.workDays.length * 4.33;
+  return profile.baseSalary / Math.max(monthlyHours, 1);
 }
 
-export function computePayroll(
-  employee: Employee,
+export function dailyRate(profile: Profile, month: string): number {
+  const days = monthDays(month).filter((d) => isWorkDay(d, profile.schedule));
+  return profile.baseSalary / Math.max(days.length, 1);
+}
+
+export function computeMonthSalary(
+  profile: Profile,
   month: string,
   attendance: AttendanceRecord[],
-  leaves: LeaveRequest[],
+  leaves: LeaveDay[],
   adjustments: SalaryAdjustment[],
-  settings: CompanySettings,
-): PayrollLine {
+): MonthSalary {
   const days = monthDays(month);
-  const workDates = days.filter((d) => isWorkDay(d, employee.schedule));
-  const empAtt = attendance.filter((a) => a.employeeId === employee.id && a.date.startsWith(month));
-  const approvedLeaves = leaves.filter(
-    (l) =>
-      l.employeeId === employee.id &&
-      l.status === 'موافق' &&
-      (l.fromDate.startsWith(month) || l.toDate.startsWith(month) || (l.fromDate <= `${month}-31` && l.toDate >= `${month}-01`)),
-  );
+  const workDates = days.filter((d) => isWorkDay(d, profile.schedule));
+  const monthAtt = attendance.filter((a) => a.date.startsWith(month));
 
   const leaveDateSet = new Set<string>();
   const unpaidLeaveDates = new Set<string>();
-  for (const leave of approvedLeaves) {
+  for (const leave of leaves) {
+    if (!isValid(parseISO(leave.fromDate)) || !isValid(parseISO(leave.toDate))) continue;
     const range = eachDayOfInterval({
       start: parseISO(leave.fromDate),
       end: parseISO(leave.toDate),
@@ -161,7 +149,7 @@ export function computePayroll(
     for (const d of range) {
       const iso = format(d, 'yyyy-MM-dd');
       if (!iso.startsWith(month)) continue;
-      if (!isWorkDay(iso, employee.schedule)) continue;
+      if (!isWorkDay(iso, profile.schedule)) continue;
       leaveDateSet.add(iso);
       if (leave.type === 'بدون راتب') unpaidLeaveDates.add(iso);
     }
@@ -173,7 +161,7 @@ export function computePayroll(
   let lateMinutes = 0;
   let workedMinutes = 0;
 
-  for (const a of empAtt) {
+  for (const a of monthAtt) {
     if (a.checkIn) {
       presentDays += 1;
       overtimeMinutes += a.overtimeMinutes;
@@ -184,41 +172,37 @@ export function computePayroll(
   }
 
   const presentOrLeave = new Set([
-    ...empAtt.filter((a) => a.checkIn).map((a) => a.date),
+    ...monthAtt.filter((a) => a.checkIn).map((a) => a.date),
     ...leaveDateSet,
   ]);
-  // Only count absence on days the company actually tracked attendance,
-  // so incomplete historical months are not mass-deducted.
-  const trackedDates = new Set(
-    attendance.filter((a) => a.date.startsWith(month) && a.checkIn).map((a) => a.date),
-  );
-  const absentDays = workDates.filter(
-    (d) => trackedDates.has(d) && !presentOrLeave.has(d) && d <= todayISO(),
-  ).length;
+  // Personal mode: count absence only after the user started tracking this month.
+  const hasTracking = monthAtt.some((a) => a.checkIn);
+  const personalAbsent = hasTracking
+    ? workDates.filter((d) => d <= todayISO() && !presentOrLeave.has(d)).length
+    : 0;
 
-  const rateH = hourlyRate(employee);
-  const rateD = dailyRate(employee, month);
-
-  const overtimePay = (overtimeMinutes / 60) * rateH * employee.overtimeRate;
+  const rateH = hourlyRate(profile);
+  const rateD = dailyRate(profile, month);
+  const overtimePay = (overtimeMinutes / 60) * rateH * profile.overtimeRate;
   const lateDeduction =
-    settings.lateDeductionPerMinute > 0
-      ? lateMinutes * settings.lateDeductionPerMinute
+    profile.lateDeductionPerMinute > 0
+      ? lateMinutes * profile.lateDeductionPerMinute
       : (lateMinutes / 60) * rateH;
 
-  const absenceDeduction = settings.absenceDeductionDays ? absentDays * rateD : 0;
-  const unpaidLeaveDeduction = settings.unpaidLeaveDeduct ? unpaidLeaveDates.size * rateD : 0;
+  const absenceDeduction = profile.absenceDeductionDays ? personalAbsent * rateD : 0;
+  const unpaidLeaveDeduction = profile.unpaidLeaveDeduct ? unpaidLeaveDates.size * rateD : 0;
 
-  const monthAdj = adjustments.filter((a) => a.employeeId === employee.id && a.month === month);
+  const monthAdj = adjustments.filter((a) => a.month === month);
   const bonus = monthAdj.filter((a) => a.type === 'مكافأة').reduce((s, a) => s + a.amount, 0);
   const extraAllowance = monthAdj.filter((a) => a.type === 'بدل إضافي').reduce((s, a) => s + a.amount, 0);
   const advanceDeduction = monthAdj.filter((a) => a.type === 'سلفة').reduce((s, a) => s + a.amount, 0);
   const otherDeduction = monthAdj.filter((a) => a.type === 'خصم').reduce((s, a) => s + a.amount, 0);
 
   const gross =
-    employee.baseSalary +
-    employee.housingAllowance +
-    employee.transportAllowance +
-    employee.otherAllowance +
+    profile.baseSalary +
+    profile.housingAllowance +
+    profile.transportAllowance +
+    profile.otherAllowance +
     overtimePay +
     bonus +
     extraAllowance;
@@ -226,17 +210,12 @@ export function computePayroll(
   const totalDeductions =
     lateDeduction + absenceDeduction + unpaidLeaveDeduction + advanceDeduction + otherDeduction;
 
-  const netSalary = Math.max(0, gross - totalDeductions);
-
   return {
-    employeeId: employee.id,
-    employeeName: employee.name,
-    department: employee.department,
     month,
-    baseSalary: round2(employee.baseSalary),
-    housingAllowance: round2(employee.housingAllowance),
-    transportAllowance: round2(employee.transportAllowance),
-    otherAllowance: round2(employee.otherAllowance),
+    baseSalary: round2(profile.baseSalary),
+    housingAllowance: round2(profile.housingAllowance),
+    transportAllowance: round2(profile.transportAllowance),
+    otherAllowance: round2(profile.otherAllowance),
     overtimePay: round2(overtimePay),
     overtimeMinutes,
     bonus: round2(bonus),
@@ -248,19 +227,11 @@ export function computePayroll(
     otherDeduction: round2(otherDeduction),
     gross: round2(gross),
     totalDeductions: round2(totalDeductions),
-    netSalary: round2(netSalary),
+    netSalary: round2(Math.max(0, gross - totalDeductions)),
     presentDays,
-    absentDays,
+    absentDays: personalAbsent,
     leaveDays: leaveDateSet.size,
     lateCount,
     workedHours: round2(workedMinutes / 60),
   };
-}
-
-function round2(n: number): number {
-  return Math.round(n * 100) / 100;
-}
-
-export function calendarDayCount(from: string, to: string): number {
-  return differenceInCalendarDays(parseISO(to), parseISO(from)) + 1;
 }
